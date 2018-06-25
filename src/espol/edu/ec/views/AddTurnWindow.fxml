@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="234.0" prefWidth="308.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.controllers.AddTurnWindow_Controller">
+   <children>
+      <Button layoutX="109.0" layoutY="186.0" mnemonicParsing="false" onAction="#addTurn" text="Añadir Turno" textAlignment="CENTER" />
+      <ComboBox layoutX="79.0" layoutY="43.0" prefWidth="150.0" />
+      <ComboBox layoutX="77.0" layoutY="83.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>
