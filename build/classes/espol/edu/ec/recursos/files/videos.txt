@@ -1,0 +1,4 @@
+/espol/edu/ec/recursos/videos/coutinho_goal.mp4,33000
+/espol/edu/ec/recursos/videos/gatos.mp4,14100
+/espol/edu/ec/recursos/videos/chavo.mp4,14000
+/espol/edu/ec/recursos/videos/chilena_ronaldo.mp4,21000
