@@ -1,5 +1,7 @@
 package espol.edu.ec.controllers;
 
+import espol.edu.ec.main.Main;
+import espol.edu.ec.tda.ModuloTurno;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
@@ -17,7 +19,7 @@ public class OptionsWindow_Controller {
     void handle_addTurn() throws IOException {
         rootAddTurn= FXMLLoader.load(getClass().getResource("../views/AddTurnWindow.fxml"));
         addTurnStage = new Stage();
-        addTurnStage.setScene(new Scene(rootAddTurn));
+        addTurnStage.setScene(new Scene(new ModuloTurno(Main.getRootTurnShower()).getPane()));
         addTurnStage.show();
     }
 

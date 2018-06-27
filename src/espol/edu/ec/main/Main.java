@@ -2,8 +2,7 @@ package espol.edu.ec.main;
 
 import java.io.IOException;
 
-import espol.edu.ec.controllers.AddTurnWindow_Controller;
-import espol.edu.ec.controllers.OptionsWindow_Controller;
+import espol.edu.ec.pane.PaneScreenTurnos;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,8 +12,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     Stage turnsWindow;
-    Parent rootTurnShower;
     Parent rootOptions;
+    private static final PaneScreenTurnos SCREEN_TURNOS = new PaneScreenTurnos();;
 
 
     @Override
@@ -22,7 +21,6 @@ public class Main extends Application {
 
         rootOptions = FXMLLoader.load(getClass().getResource("../views/OptionsWindow.fxml"));
 
-        OptionsWindow_Controller controller=new OptionsWindow_Controller();
 
         optionsWindow.setTitle("Sistema de Migraciones.");
         optionsWindow.setScene(new Scene(rootOptions));
@@ -36,20 +34,14 @@ public class Main extends Application {
     }
 
     private void initRootTurnShower() throws IOException {
-
-        rootTurnShower= FXMLLoader.load(getClass().getResource("../views/TurnShower.fxml"));
-
-        AddTurnWindow_Controller controller=new AddTurnWindow_Controller();
-        controller.setRootTurnShower(rootTurnShower);
-
         turnsWindow = new Stage();
-        turnsWindow.setTitle("Mostrador de Turnos.");
-        turnsWindow.setScene(new Scene(rootTurnShower));
+        turnsWindow.setScene(new Scene(SCREEN_TURNOS.getRoot()));
+        turnsWindow.setFullScreen(true); 
         turnsWindow.show();
 
     }
 
-    public Parent getRootTurnShower() {
-        return rootTurnShower;
+    public static PaneScreenTurnos getRootTurnShower() {
+        return SCREEN_TURNOS;
     }
 }
