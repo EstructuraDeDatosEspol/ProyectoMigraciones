@@ -1,0 +1,25 @@
+﻿codigo,codigo_Pais,provincia
+1,58,El Oro
+2,58,Esmeraldas
+3,58,Guayas
+4,58,Los Ríos
+5,58,Manabí
+6,58,Santa Elena
+7,58,Azuay
+8,58,Bolívar
+9,58,Cañar
+10,58,Carchi
+11,58,Chimborazo
+12,58,Cotopaxi
+13,58,Imbabura
+14,58,Loja
+15,58,Pichincha
+16,58,Santo Domingo
+17,58,Tungurahua
+18,58,Morona Santiago
+19,58,Napo
+20,58,Orellana
+21,58,Pastaza
+22,58,Sucumbios
+23,58,Zamora
+24,58,Galápagos

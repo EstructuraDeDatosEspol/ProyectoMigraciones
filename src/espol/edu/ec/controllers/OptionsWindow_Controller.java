@@ -1,6 +1,7 @@
 package espol.edu.ec.controllers;
 
 import espol.edu.ec.main.Main;
+import espol.edu.ec.registro.ModuloRegistro;
 import espol.edu.ec.tda.ModuloTurno;
 import java.io.IOException;
 
@@ -30,9 +31,10 @@ public class OptionsWindow_Controller {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../views/AdminRegistrosWindow.fxml"));
         rootAdminReg = loader.load();
-
+        
         adminRegStage = new Stage();
-        adminRegStage.setScene(new Scene(rootAdminReg));
+        new ModuloRegistro().pantalla(adminRegStage);
+        //adminRegStage.setScene(new Scene(rootAdminReg));
         adminRegStage.show();
 
         AdminRegistrosController controller = loader.getController();

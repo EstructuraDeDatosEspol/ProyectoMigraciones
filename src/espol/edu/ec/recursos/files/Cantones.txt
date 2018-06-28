@@ -1,0 +1,222 @@
+﻿codigo,cod_Provincia,canton
+1,7,Cuenca
+2,7,Camilo Ponce Enríquez
+3,7,Chordeleg
+4,7,El
+5,7,Girón
+6,7,Guachapala
+7,7,Gualaceo
+8,7,Nabón
+9,7,Oña
+10,7,Paute
+11,7,Pucará
+12,7,San Fernando
+13,7,Santa Isabel
+14,7,Sevilla de Oro
+15,7,Sígsig
+16,8,Guaranda
+17,8,Caluma
+18,8,Chillanes
+19,8,Chimbo
+20,8,Echeandía
+21,8,Las Naves
+22,8,San Miguel
+23,9,Azogues
+24,9,Biblián
+25,9,Cañar
+26,9,Déleg
+27,9,El Tambo
+28,9,La Troncal
+29,9,Suscal
+30,10,Tulcán
+31,10,Bolívar
+32,10,Espejo
+33,10,Mira
+34,10,Montúfar
+35,10,Huaca
+36,1,Machala
+37,1,Arenillas
+38,1,Atahualpa
+39,1,Balsas
+40,1,Chilla
+41,1,El guabo
+42,1,Huaquillas
+43,1,Las lajas
+44,1,Marcabelí
+45,1,Pasaje
+46,1,Piñas
+47,1,Portovelo
+48,1,Santa
+49,1,Zaruma
+50,2,Esmeraldas
+51,2,Atacames
+52,2,Eloy
+53,2,Muisne
+54,2,Quinindé
+55,2,Rioverde
+56,2,San lorenzo
+57,3,Guayaquil
+58,3,Alfredo Baquerizo
+59,3,Balao
+60,3,Balzar
+61,3,Colimes
+62,3,Daule
+63,3,Durán
+64,3,El Empalme
+65,3,El Triunfo
+66,3,General Antonio Elizalde
+67,3,Isidro Ayora
+68,3,Lomas de Sargentillo
+69,3,Marcelino Maridueña
+70,3,Milagro
+71,3,Naranjal
+72,3,Naranjito
+73,3,Nobol
+74,3,Palestina
+75,3,Pedro
+76,3,Playas
+77,3,Salitre
+78,3,Samborondón
+79,3,Santa Lucia
+80,3,Simón Bolivar
+81,3,Yaguachi
+82,4,Babahoyo
+83,4,Baba
+84,4,Buena Fe
+85,4,Mocache
+86,4,Montalvo
+87,4,Palenque
+88,4,Puebloviejo
+89,4,Quevedo
+90,4,Quinsaloma
+91,4,Urdaneta
+92,4,Valencia
+93,4,Ventanas
+94,4,Vinces
+95,5,Portoviejo
+96,5,24 de mayo
+97,5,Bolívar
+98,5,Chone
+99,5,El carmen
+100,5,Flavio alfaro
+101,5,Jama
+102,5,Jaramijó
+103,5,Jipijapa
+104,5,Junín
+105,5,Manta
+106,5,Montecristi
+107,5,Olmedo
+108,5,Paján
+109,5,Pedernales
+110,5,Pichincha
+111,5,Puerto lopez
+112,5,Rocafuerte
+113,5,San Vicente
+114,5,Santa Ana
+115,5,Sucre
+116,5,Tosagua
+117,6,Santa Elena
+118,6,La Libertad
+119,6,Salinas
+120,11,Riobamba
+121,11,Alausí
+122,11,Chambo
+123,11,Chunchi
+124,11,Colta
+125,11,Cumandá
+126,11,Guamote
+127,11,Guano
+128,11,Pallatanga
+129,11,Penipe
+130,12,Latacunga
+131,12,La Maná
+132,12,Pangua
+133,12,Pujilí
+134,12,Salcedo
+135,12,Saquisilí
+136,12,Sigchos
+137,13,Ibarra
+138,13,Antonio
+139,13,Cotacachi
+140,13,Otavalo
+141,13,Pimampiro
+142,13,San Miguel de Urcuquí
+143,14,Loja
+144,14,Calvas
+145,14,Catamayo
+146,14,Celica
+147,14,Chaguarpamba
+148,14,Espíndola
+149,14,Gonzanamá
+150,14,Macará
+151,14,Olmedo
+152,14,Paltas
+153,14,Pindal
+154,14,Puyango
+155,14,Quilanga
+156,14,Saraguro
+157,14,Sozoranga
+158,14,Zapotillo
+159,15,Quito
+160,15,Cayambe
+161,15,Mejía
+162,15,Pedro Moncayo
+163,15,Pedro Vicente Maldonado
+164,15,Puerto Quito
+165,15,Rumiñahui
+166,15,San Miguel de los Bancos
+167,16,Santo Domingo
+168,16,La Concordia
+169,17,Ambato
+170,17,Baños
+171,17,Cevallos
+172,17,Mocha
+173,17,Patate
+174,17,Quero
+175,17,San Pedro de Pelileo
+176,17,Santiago de Píllaro
+177,17,Tisaleo
+178,18,Morona
+179,18,Gualaquiza
+180,18,Huamboya
+181,18,Limón Indaza
+182,18,Logroño
+183,18,Pablo Sexto
+184,18,Palora
+185,18,San Jaun Bosco
+186,18,Santiago
+187,18,Sucúa
+188,18,Taisha
+189,18,Tiwintza
+190,19,Tena
+191,19,Archidona
+192,19,Carlos Julio Arosemena Tola
+193,19,El Chaco
+194,19,Quijos
+195,20,Francisco de Orellana
+196,20,Aguarico
+197,20,La Joya de los Sachas
+198,20,Loreto
+199,21,Pastaza
+200,21,Arajuno
+201,21,Mera
+202,21,Santa Clara
+203,22,Lago Agrio
+204,22,Cascales
+205,22,Cuyabeno
+206,22,Gonzalo Pizarro
+207,22,Putumayo
+208,22,Shushufindi
+209,22,Sucumbíos
+210,23,Zamora
+211,23,Centinela del Condor
+212,23,Chinchipe
+213,23,El Pangui
+214,23,Nangaritza
+215,23,Palanda
+216,23,Paquisha
+217,23,Yacuambi
+218,23,Yantzaza
+219,24,San Cristóbal
+220,24,Isabela
+221,24,Santa

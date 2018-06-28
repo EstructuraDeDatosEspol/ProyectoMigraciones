@@ -1,0 +1,7 @@
+﻿codigo,continente
+1,América
+2,África
+3,Europa
+4,Asia
+5,Oceanía
+6,Antartida
