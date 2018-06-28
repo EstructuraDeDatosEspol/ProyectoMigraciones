@@ -31,6 +31,12 @@ public class ModuloRegistro {
         listPersonas = new ReadWriter().cargarPersonas("Persona.txt");
         listRegistroMigrantes = new ReadWriter().cargarRegistro("Registros.txt");
         listCantones = referenciarCantones(listContinentes);
+        enlazarListas();
+        System.out.println(listRegistroMigrantes.getLast());
+        listCantones.get(39).getList().get(0).setAnio_movi(1);
+        System.out.println(listRegistroMigrantes.getLast());
+        System.out.println(listPersonas.getLast().getList());
+        System.out.println(listCantones.get(39).getList());
         
         Button boton1 = new Button("Registrar");
         boton1.setDisable(true);
@@ -112,5 +118,16 @@ public class ModuloRegistro {
             }
         }
         return lista;
+    }
+    
+    public final void enlazarListas(){
+        for(RegistroMigrante rm: listRegistroMigrantes){
+            for(Persona p: listPersonas){
+                if(rm.getPersona().equals(p))p.getList().addLast(rm);
+            }
+            for(Canton c: listCantones){
+                if(rm.getCanton().equals(c))c.getList().addLast(rm);
+            }
+        }
     }
 }

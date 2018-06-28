@@ -43,32 +43,130 @@ public class RegistroMigrante {
         this.persona = persona;
         this.canton = canton;
     }
-        
-    
-    public RegistroMigrante(Persona a, Canton p) {
-        this.persona = a;
-        this.canton = p;
+
+    public String getTip_mov() {
+        return tip_mov;
     }
 
-    public Persona getA() {
+    public void setTip_mov(String tip_mov) {
+        this.tip_mov = tip_mov;
+    }
+
+    public String getTipo_nacionalidad() {
+        return tipo_nacionalidad;
+    }
+
+    public void setTipo_nacionalidad(String tipo_nacionalidad) {
+        this.tipo_nacionalidad = tipo_nacionalidad;
+    }
+
+    public String getVia_transporte() {
+        return via_transporte;
+    }
+
+    public void setVia_transporte(String via_transporte) {
+        this.via_transporte = via_transporte;
+    }
+
+    public int getAnio_movi() {
+        return anio_movi;
+    }
+
+    public void setAnio_movi(int anio_movi) {
+        this.anio_movi = anio_movi;
+    }
+
+    public String getMes_movi() {
+        return mes_movi;
+    }
+
+    public void setMes_movi(String mes_movi) {
+        this.mes_movi = mes_movi;
+    }
+
+    public int getDia_movi() {
+        return dia_movi;
+    }
+
+    public void setDia_movi(int dia_movi) {
+        this.dia_movi = dia_movi;
+    }
+
+    public String getMotivo_viaje() {
+        return motivo_viaje;
+    }
+
+    public void setMotivo_viaje(String motivo_viaje) {
+        this.motivo_viaje = motivo_viaje;
+    }
+
+    public String getPais_procedencia() {
+        return pais_procedencia;
+    }
+
+    public void setPais_procedencia(String pais_procedencia) {
+        this.pais_procedencia = pais_procedencia;
+    }
+
+    public String getPais_residencia() {
+        return pais_residencia;
+    }
+
+    public void setPais_residencia(String pais_residencia) {
+        this.pais_residencia = pais_residencia;
+    }
+
+    public String getLugar_proveniente() {
+        return lugar_proveniente;
+    }
+
+    public void setLugar_proveniente(String lugar_proveniente) {
+        this.lugar_proveniente = lugar_proveniente;
+    }
+
+    public String getCont_procedencia() {
+        return cont_procedencia;
+    }
+
+    public void setCont_procedencia(String cont_procedencia) {
+        this.cont_procedencia = cont_procedencia;
+    }
+
+    public String getCont_residencia() {
+        return cont_residencia;
+    }
+
+    public void setCont_residencia(String cont_residencia) {
+        this.cont_residencia = cont_residencia;
+    }
+
+    public String getSubcont_procedencia() {
+        return subcont_procedencia;
+    }
+
+    public void setSubcont_procedencia(String subcont_procedencia) {
+        this.subcont_procedencia = subcont_procedencia;
+    }
+
+    public Persona getPersona() {
         return persona;
     }
 
-    public void setA(Persona a) {
-        this.persona = a;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
-    public Canton getP() {
+    public Canton getCanton() {
         return canton;
     }
 
-    public void setP(Canton p) {
-        this.canton = p;
+    public void setCanton(Canton canton) {
+        this.canton = canton;
     }
 
     @Override
     public String toString() {
-        return "RegistroMigrante{" + "tip_mov=" + tip_mov + ", tipo_nacionalidad=" + tipo_nacionalidad + ", via_transporte=" + via_transporte + ", anio_movi=" + anio_movi + ", mes_movi=" + mes_movi + ", dia_movi=" + dia_movi + ", motivo_viaje=" + motivo_viaje + ", pais_procedencia=" + pais_procedencia + ", pais_residencia=" + pais_residencia + ", lugar_proveniente=" + lugar_proveniente + ", cont_procedencia=" + cont_procedencia + ", cont_residencia=" + cont_residencia + ", subcont_procedencia=" + subcont_procedencia + ", persona=" + persona + ", canton=" + canton + '}';
+        return "RegistroMigrante[" + "tip_mov=" + tip_mov + ", tipo_nacionalidad=" + tipo_nacionalidad + ", via_transporte=" + via_transporte + ", anio_movi=" + anio_movi + ", mes_movi=" + mes_movi + ", dia_movi=" + dia_movi + ", motivo_viaje=" + motivo_viaje + ", pais_procedencia=" + pais_procedencia + ", pais_residencia=" + pais_residencia + ", lugar_proveniente=" + lugar_proveniente + ", cont_procedencia=" + cont_procedencia + ", cont_residencia=" + cont_residencia + ", subcont_procedencia=" + subcont_procedencia +" "+ persona + " " + canton +']';
     }
     
 }

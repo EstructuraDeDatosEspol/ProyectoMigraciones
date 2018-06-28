@@ -26,6 +26,7 @@ public class Canton {
         this.codPais = codPais;
         this.codContinente = codContinente;
         this.nombre = nombre;
+        list = new LinkedList<>();
     }
 
     public Canton(int codigo, String nombre) {
@@ -36,6 +37,7 @@ public class Canton {
 
     public Canton(String nombre) {
         this.nombre = nombre;
+        list = new LinkedList<>();
     }
 
     public int getCodigo() {
@@ -95,6 +97,6 @@ public class Canton {
     public boolean equals(Object o){
         if(o == null || !(o instanceof Canton) )return false;
         Canton canton = (Canton)o;
-        return codigo == canton.codigo;
+        return nombre.equals(canton.nombre);
     }
 }
