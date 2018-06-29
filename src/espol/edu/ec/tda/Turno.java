@@ -57,6 +57,6 @@ public class Turno {
     
     @Override
     public String toString() {
-        return "Numero: "+ numero + ", Puesto: "+ puesto.getPuesto();
+        return "Numero:"+ numero + "-Puesto:"+ puesto.getPuesto();
     }
 }

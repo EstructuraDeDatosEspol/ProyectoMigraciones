@@ -7,6 +7,7 @@ package espol.edu.ec.pane;
 
 import espol.edu.ec.simplylinkedlistcircular.SimplyLinkedListCircular;
 import espol.edu.ec.tda.Const;
+import espol.edu.ec.tda.Estado;
 import espol.edu.ec.tda.Turno;
 import espol.edu.ec.tda.Video;
 import java.io.BufferedReader;
@@ -48,15 +49,14 @@ public class PaneScreenTurnos {
     private boolean isRun;
     private final SimplyLinkedListCircular<Video> videos;
     private final MediaView reproductor;
-    private final GridPane grid;
-    private int delete;
-    private int add;
+    private final VBox panel;
+    private int index;
     
     public PaneScreenTurnos() {
         videos = new SimplyLinkedListCircular<>();
         backPane = new StackPane();
         pane = new VBox();
-        grid = new GridPane();
+        panel = new VBox();
         reproductor = new MediaView();
         backPane.setAlignment(Pos.CENTER); 
         Rectangle fondo = new Rectangle(Const.MAX_WIDTH - 30, Const.MAX_HEIGHT - 30);
@@ -65,8 +65,7 @@ public class PaneScreenTurnos {
         fondo.setArcWidth(70); 
         backPane.getChildren().addAll(fondo, pane);
         isRun = true;
-        delete = 1;
-        add = 1;
+        index = 1;
         topPane();
         cargarListaVideos();
         centerPane();
@@ -83,7 +82,7 @@ public class PaneScreenTurnos {
         hbox.getChildren().addAll(deb,text);
         hbox.setSpacing(Const.MAX_WIDTH - text.getText().length()*20 - deb.getImage().getWidth() - Const.MAX_WIDTH/30);
         pane.getChildren().add(hbox);
-        text.setFill(Color.AQUA); 
+        text.setFill(Color.color(0.408, 0.718, 0.898)); 
         text.setFont(Font.font(30)); 
         text.setStyle(Const.FONT_BOLD); 
         Runnable run = () -> {
@@ -141,7 +140,7 @@ public class PaneScreenTurnos {
     }
     
     private void centerRightPane(HBox hbox, double width, double height) { 
-        grid.setVgap(((height/4)/5)/3); 
+        panel.setSpacing(((height/4)/5)/3);
         Rectangle r1 = new Rectangle(width/2, (height/4)-(height/4)/5);
         r1.setFill(Color.color(0.408, 0.718, 0.898));
         Rectangle r2 = new Rectangle(width/2, (height/4)-(height/4)/5);
@@ -154,76 +153,52 @@ public class PaneScreenTurnos {
         puesto.setFill(Color.WHITE); 
         turno.setFont(Font.font("Arial", r1.getHeight()/1.8));
         puesto.setFont(Font.font("Arial", r1.getHeight()/1.8));
-        grid.addRow(0, new StackPane(r1, turno), new StackPane(r2, puesto));
-        hbox.getChildren().add(grid);
-        for(int i=1; i<4; i++) {
-            Text t = new Text();
-            Text p = new Text();
-            t.setStyle(Const.FONT_BOLD);
-            p.setStyle(Const.FONT_BOLD); 
-            t.setFill(Color.WHITE);
-            p.setFill(Color.WHITE); 
-            t.setFont(Font.font("Arial", r1.getHeight()/1.8));
-            p.setFont(Font.font("Arial", r1.getHeight()/1.8));
+        panel.getChildren().add(new HBox(new StackPane(r1, turno), new StackPane(r2, puesto)));
+        hbox.getChildren().add(panel);
+        for(int i=0; i<3; i++) {
             Rectangle r3 = new Rectangle(width/2, (height/4));
             r3.setFill(Color.color(0.408, 0.718, 0.898));
             Rectangle r4 = new Rectangle(width/2, (height/4));
             r4.setFill(Color.color(0.392, 0.529, 0.667));
-            grid.addRow(i, new StackPane(r3, t), new StackPane(r4, p));
-        }
-        
+            panel.getChildren().add(new HBox(new StackPane(r3), new StackPane(r4)));
+        } 
+    }
+    
+    public boolean isFull() {
+        return index == 4;
     }
     
     public boolean addTurno(Turno turno) {
-        if(add < 4){
-            grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == add);
-            double width = Const.MAX_WIDTH/2 - Const.MAX_WIDTH/31;
-            double height = Const.MAX_HEIGHT/1.5;
-            Text t = new Text(turno.getNumero());
-            Text p = new Text(turno.getPuesto().getPuesto());
-            t.setStyle(Const.FONT_BOLD);
-            p.setStyle(Const.FONT_BOLD); 
-            t.setFill(Color.WHITE);
-            p.setFill(Color.WHITE); 
-            Rectangle r3 = new Rectangle(width/2, (height/4));
-            t.setFont(Font.font("Arial", r3.getHeight()/1.8));
-            p.setFont(Font.font("Arial", r3.getHeight()/1.8));
+        double width = (Const.MAX_WIDTH/2 - Const.MAX_WIDTH/31)/2;
+        double height = (Const.MAX_HEIGHT/1.5)/4;
+        if(turno == null) {
+            panel.getChildren().removeIf((n)-> (n instanceof TurnoPane && 
+                ((TurnoPane)n).getTurno().getEstado() == Estado.ATENDIDO));
+            Rectangle r3 = new Rectangle(width, height);
             r3.setFill(Color.color(0.408, 0.718, 0.898));
-            Rectangle r4 = new Rectangle(width/2, (height/4));
+            Rectangle r4 = new Rectangle(width, height);
             r4.setFill(Color.color(0.392, 0.529, 0.667));
-            grid.addRow(add, new StackPane(r3, t), new StackPane(r4, p));
-            add++;
-            return true;
+            panel.getChildren().add(new HBox(new StackPane(r3), new StackPane(r4)));
+            index--;
+            return false;
         }
-        return false;
-    }
-    
-    public void atenderTruno(Turno turno) {
-        grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == delete);
-        double width = Const.MAX_WIDTH/2 - Const.MAX_WIDTH/31;
-        double height = Const.MAX_HEIGHT/1.5;
-        Text t = new Text(turno.getNumero());
-        Text p = new Text(turno.getPuesto().getPuesto());
-        t.setStyle(Const.FONT_BOLD);
-        p.setStyle(Const.FONT_BOLD); 
-        t.setFill(Color.WHITE);
-        p.setFill(Color.WHITE); 
-        Rectangle r3 = new Rectangle(width/2, (height/4));
-        t.setFont(Font.font("Arial", r3.getHeight()/1.8));
-        p.setFont(Font.font("Arial", r3.getHeight()/1.8));
-        r3.setFill(Color.color(0.408, 0.718, 0.898));
-        Rectangle r4 = new Rectangle(width/2, (height/4));
-        r4.setFill(Color.color(0.392, 0.529, 0.667));
-        add++;
-        grid.addRow(add, new StackPane(r3, t), new StackPane(r4, p));
-        delete++;
+        TurnoPane tPane = new TurnoPane(turno, width, height);
+        if(isFull()){
+            panel.getChildren().removeIf((n)-> (n instanceof TurnoPane && 
+                    ((TurnoPane)n).getTurno().getEstado() == Estado.ATENDIDO));
+            return panel.getChildren().add(tPane);
+        }    
+        panel.getChildren().remove(index);
+        panel.getChildren().add(index, tPane);
+        if(index < 4)
+            index++;
+        return true;
     }
     
     private void sleep(long milliseconds){
         try {
             Thread.sleep(milliseconds);
         } catch (InterruptedException ex) {
-            System.out.println(ex.getMessage());
             Thread.currentThread().interrupt();
         }
     }
@@ -238,8 +213,8 @@ public class PaneScreenTurnos {
     
     private void cargarListaVideos() {
         String file = new File("").getAbsolutePath();
-        int index = file.indexOf("migraciones");
-        file = Paths.get(file.substring(0, index + 11), "src", "espol", "edu", "ec", "recursos", "files", "videos.txt").toString();
+        int i = file.indexOf("migraciones");
+        file = Paths.get(file.substring(0, i + 11), "src", "espol", "edu", "ec", "recursos", "files", "videos.txt").toString();
        
         try(BufferedReader br = new BufferedReader(new FileReader(file))){
             String line;

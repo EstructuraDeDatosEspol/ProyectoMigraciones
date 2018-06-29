@@ -10,6 +10,16 @@ package espol.edu.ec.tda;
  * @author Kenny Camba
  */
 public enum Estado {
+    /**
+     * Indica que el turno fue atendido
+     */
     ATENDIDO,
-    EN_ESPERA
+    /**
+     * Indica que el turno esta en espera
+     */
+    EN_ESPERA,
+    /**
+     * Indica que el turno se esta atendiendo
+     */
+    ATENDIENDO;
 }

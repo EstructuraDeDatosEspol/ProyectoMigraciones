@@ -30,9 +30,25 @@ public class Puesto {
         return puesto;
     }
     
+    public void setPuesto(String puesto) {
+        this.puesto = puesto;
+    } 
+    
     @Override
     public String toString() {
         return puesto;
+    }
+    
+    @Override
+    public boolean equals(Object o){
+        if(!(o instanceof Puesto))
+            return false;
+        return o.hashCode() == this.hashCode();
+    }
+    
+    @Override
+    public int hashCode() {
+        return Integer.parseInt(puesto);
     }
     
     public static List<Puesto> cargarPuestos() {

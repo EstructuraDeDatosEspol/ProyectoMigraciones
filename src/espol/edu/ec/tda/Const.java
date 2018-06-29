@@ -18,7 +18,7 @@ public class Const {
         //
     } 
     
-    public static final Rectangle2D VISUAL_BOUNDS = Screen.getPrimary().getBounds();
+    public static final Rectangle2D VISUAL_BOUNDS = Screen.getPrimary().getVisualBounds();
     public static final double MAX_WIDTH = VISUAL_BOUNDS.getWidth();
     public static final double MAX_HEIGHT = VISUAL_BOUNDS.getHeight();
     public static final String FONT_BOLD = "-fx-font-weight:bold";
