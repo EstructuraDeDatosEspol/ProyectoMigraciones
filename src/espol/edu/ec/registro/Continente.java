@@ -18,7 +18,7 @@ public class Continente {
     private int codigo;
     private String nombre;
     private HashMap<Integer,Pais> mapaPaises;
-    private HashMap<Integer,SubContinente> mapaSub;
+    private HashMap<String,SubContinente> mapaSub;
     
     public Continente(String continente) {
         this.nombre = continente;
@@ -56,6 +56,14 @@ public class Continente {
         this.mapaPaises = mapaPaises;
     }
 
+    public HashMap<String, SubContinente> getMapaSub() {
+        return mapaSub;
+    }
+
+    public void setMapaSub(HashMap<String, SubContinente> mapaSub) {
+        this.mapaSub = mapaSub;
+    }
+
     @Override
     public String toString() {
         return nombre;
@@ -73,7 +81,7 @@ public class Continente {
             while ((linea = br.readLine()) != null) {//linea leida
                 String[] separa = linea.split("[\\,]");
                 //guardamos la linea
-                if(Integer.valueOf(separa[1]).equals(codigo))mapa.put(Integer.valueOf(separa[0]), new Pais(Integer.valueOf(separa[0]),codigo,separa[3]));
+                if(Integer.valueOf(separa[1]).equals(codigo))mapa.put(Integer.valueOf(separa[0]), new Pais(Integer.valueOf(separa[0]),separa[2],codigo,separa[3]));
             }
         } catch (Exception ex) {
             ex.getStackTrace();
@@ -81,8 +89,8 @@ public class Continente {
         return mapa;
     }
     
-    public static HashMap<Integer,SubContinente> cargarSubM(String nombre, int codigo){
-        HashMap<Integer,SubContinente> mapa = new HashMap<>();
+    public static HashMap<String,SubContinente> cargarSubM(String nombre, int codigo){
+        HashMap<String,SubContinente> mapa = new HashMap<>();
         File f = new File("");
         String dire = f.getAbsolutePath();
         int indiceDeProyecto = dire.indexOf("migraciones");
@@ -93,7 +101,7 @@ public class Continente {
             while ((linea = br.readLine()) != null) {//linea leida
                 String[] separa = linea.split("[\\,]");
                 //guardamos la linea
-                if(Integer.valueOf(separa[1]).equals(codigo))mapa.put(Integer.valueOf(separa[0]), new SubContinente(Integer.valueOf(separa[0]),codigo,separa[3]));
+                if(Integer.valueOf(separa[1]).equals(codigo))mapa.put(separa[0], new SubContinente(separa[0],Integer.valueOf(separa[1]),separa[2]));
             }
         } catch (Exception ex) {
             ex.getStackTrace();

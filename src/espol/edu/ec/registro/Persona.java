@@ -12,19 +12,19 @@ import java.util.LinkedList;
  * @author SSAM
  */
 public class Persona {
-    private String cedula;
+    private int cedula;
     private String nombre;
     private String apellido;
     private String sexo;
     private int anioNacimiento;
     private String ocupacion;
     private int edad;
-    private String paisNacimiento;
+    private String Nacionalidad;
     private String continenteNacimiento;
     private String subcontNacionalidad;
     private LinkedList<RegistroMigrante> list;
 
-    public Persona(String cedula, String nombre, String apellido, String sexo, int anioNacimiento, String ocupacion, int edad, String paisNacimiento, String continenteNacimiento, String subcontNacionalidad) {
+    public Persona(int cedula, String nombre, String apellido, String sexo, int anioNacimiento, String ocupacion, int edad, String paisNacimiento, String continenteNacimiento, String subcontNacionalidad) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -32,7 +32,7 @@ public class Persona {
         this.anioNacimiento = anioNacimiento;
         this.ocupacion = ocupacion;
         this.edad = edad;
-        this.paisNacimiento = paisNacimiento;
+        this.Nacionalidad = paisNacimiento;
         this.continenteNacimiento = continenteNacimiento;
         this.subcontNacionalidad = subcontNacionalidad;
         list = new LinkedList<>();
@@ -46,11 +46,11 @@ public class Persona {
         this.list = list;
     }
 
-    public String getCedula() {
+    public int getCedula() {
         return cedula;
     }
 
-    public void setCedula(String cedula) {
+    public void setCedula(int cedula) {
         this.cedula = cedula;
     }
 
@@ -103,11 +103,11 @@ public class Persona {
     }
 
     public String getPaisNacimiento() {
-        return paisNacimiento;
+        return Nacionalidad;
     }
 
     public void setPaisNacimiento(String paisNacimiento) {
-        this.paisNacimiento = paisNacimiento;
+        this.Nacionalidad = paisNacimiento;
     }
 
     public String getContinenteNacimiento() {
@@ -128,13 +128,13 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", sexo=" + sexo + ", anioNacimiento=" + anioNacimiento + ", ocupacion=" + ocupacion + ", edad=" + edad + ", paisNacimiento=" + paisNacimiento + ", continenteNacimiento=" + continenteNacimiento + ", subcontNacionalidad=" + subcontNacionalidad + ", list=" + list + '}';
+        return "Persona{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", sexo=" + sexo + ", anioNacimiento=" + anioNacimiento + ", ocupacion=" + ocupacion + ", edad=" + edad + ", paisNacimiento=" + Nacionalidad + ", continenteNacimiento=" + continenteNacimiento + ", subcontNacionalidad=" + subcontNacionalidad + ", list=" + list + '}';
     }
     
     @Override
     public boolean equals(Object o){
         if(o == null || !(o instanceof Persona))return false;
         Persona p = (Persona)o;
-        return cedula.equals(p.cedula);
+        return cedula == (p.cedula);
     }
 }

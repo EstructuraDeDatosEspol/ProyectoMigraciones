@@ -25,6 +25,7 @@ public class RegistroMigrante {
     private String subcont_procedencia;
     private Persona persona;
     private Canton canton;
+    
 
     public RegistroMigrante(String tip_mov, String tipo_nacionalidad, String via_transporte, int anio_movi, String mes_movi, int dia_movi, String motivo_viaje, String pais_procedencia, String pais_residencia, String lugar_proveniente, String cont_procedencia, String cont_residencia, String subcont_procedencia, Persona persona, Canton canton) {
         this.tip_mov = tip_mov;

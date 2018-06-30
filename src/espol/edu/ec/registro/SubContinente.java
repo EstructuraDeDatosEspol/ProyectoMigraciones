@@ -10,21 +10,21 @@ package espol.edu.ec.registro;
  * @author SSAM
  */
 public class SubContinente {
-    private int codigo;
+    private String codigo;
     private int codContinente;
     private String nombre;
 
-    public SubContinente(int codigo, int codContinente, String nombre) {
+    public SubContinente(String codigo, int codContinente, String nombre) {
         this.codigo = codigo;
         this.codContinente = codContinente;
         this.nombre = nombre;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 

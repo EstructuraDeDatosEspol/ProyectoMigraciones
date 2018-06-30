@@ -6,6 +6,9 @@
 package espol.edu.ec.registro;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
+import javafx.collections.FXCollections;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -21,9 +24,7 @@ public class DisenioFormulario {
     private TextField text2;
     private TextField text3;
     private TextField text4;
-    private TextField text5;
     private DatePicker calendario;
-    private TextField text9;
     private TextField text10;
     private TextField text11;
     private TextField text12;
@@ -41,8 +42,9 @@ public class DisenioFormulario {
     private TextField text24;
     private TextField text25;
     private TextField text26;
+    private ComboBox comboBox;
 
-    public DisenioFormulario(Pane root) {
+    public DisenioFormulario(Pane root,LinkedList<Canton> listCantones) {
         this.root = root;
         root.getStylesheets().add(DisenioFormulario.class.getResource("/espol/edu/ec/registro/estilo.css").toExternalForm());
         int n = 30;
@@ -75,9 +77,11 @@ public class DisenioFormulario {
         Label label5 = new Label("Canton Movimiento:");
         label5.setTranslateX(enX);
         label5.setTranslateY(n+=espacio);
-        text5 = new TextField();
-        text5.setTranslateX(enXTexto);
-        text5.setTranslateY(n);
+        comboBox = new ComboBox(FXCollections.observableList(listCantones));
+        comboBox.setPromptText("Canton");
+        comboBox.setEditable(true);
+        comboBox.setTranslateX(enXTexto);
+        comboBox.setTranslateY(n);
         
         Label label4 = new Label("Provincia Movimiento:");
         label4.setTranslateX(enX);
@@ -93,13 +97,6 @@ public class DisenioFormulario {
         calendario.setTranslateX(enXTexto);
         calendario.setTranslateY(n);
         calendario.setValue(LocalDate.now());
-        
-        Label label9 = new Label("Via Transporte:");
-        label9.setTranslateX(enX);
-        label9.setTranslateY(n+=espacio);
-        text9 = new TextField();
-        text9.setTranslateX(enXTexto);
-        text9.setTranslateY(n);
         
         Label label10 = new Label("Cedula:");
         label10.setTranslateX(enX);
@@ -172,7 +169,7 @@ public class DisenioFormulario {
         text18.setTranslateX(enXTexto2);
         text18.setTranslateY(n);
         
-        Label label19 = new Label("Lugar Proveniente:");
+        Label label19 = new Label("Lugar Procedencia:");
         label19.setTranslateX(enX2);
         label19.setTranslateY(n+=espacio);
         text19 = new TextField();
@@ -222,10 +219,10 @@ public class DisenioFormulario {
         text25.setTranslateY(n);
         
         
-        root.getChildren().addAll(label1,label2,label3,label4,label5,label6,calendario,label9,label10,label11,label12,
+        root.getChildren().addAll(label1,label2,label3,label4,label5,label6,calendario,label10,label11,label12,
                 label13,label14,label15,label16,label17,label18,label19,label20,label21,label22,label23,label24,label25,label26,
-                text1,text2,text3,text4,text5,text9,text10,text11,text12,text13,text14,text15,text16,text17,text18,text19,
-                text20,text21,text22,text23,text24,text25,text26);
+                text1,text2,text3,text4,text10,text11,text12,text13,text14,text15,text16,text17,text18,text19,
+                text20,text21,text22,text23,text24,text25,text26,comboBox);
     }
 
     public Pane getRoot() {
@@ -268,28 +265,12 @@ public class DisenioFormulario {
         this.text4 = text4;
     }
 
-    public TextField getText5() {
-        return text5;
-    }
-
-    public void setText5(TextField text5) {
-        this.text5 = text5;
-    }
-
     public DatePicker getCalendario() {
         return calendario;
     }
 
     public void setCalendario(DatePicker calendario) {
         this.calendario = calendario;
-    }
-
-    public TextField getText9() {
-        return text9;
-    }
-
-    public void setText9(TextField text9) {
-        this.text9 = text9;
     }
 
     public TextField getText10() {
@@ -426,5 +407,13 @@ public class DisenioFormulario {
 
     public void setText26(TextField text26) {
         this.text26 = text26;
+    }
+
+    public ComboBox getComboBox() {
+        return comboBox;
+    }
+
+    public void setComboBox(ComboBox comboBox) {
+        this.comboBox = comboBox;
     }
 }

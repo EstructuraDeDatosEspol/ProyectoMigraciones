@@ -16,14 +16,16 @@ public class Canton {
     private int codigo;
     private int codigoProv;
     private int codPais;
+    private String codSubContinente;
     private int codContinente;
     private String nombre;
     private List<RegistroMigrante> list;
 
-    public Canton(int codigo, int codigoProv, int codPais, int codContinente, String nombre) {
+    public Canton(int codigo, int codigoProv, int codPais, String codSubContinente, int codContinente, String nombre) {
         this.codigo = codigo;
         this.codigoProv = codigoProv;
         this.codPais = codPais;
+        this.codSubContinente = codSubContinente;
         this.codContinente = codContinente;
         this.nombre = nombre;
         list = new LinkedList<>();
@@ -80,6 +82,14 @@ public class Canton {
         this.codPais = codPais;
     }
 
+    public String getCodSubContinente() {
+        return codSubContinente;
+    }
+
+    public void setCodSubContinente(String codSubContinente) {
+        this.codSubContinente = codSubContinente;
+    }
+
     public int getCodContinente() {
         return codContinente;
     }
@@ -90,7 +100,7 @@ public class Canton {
 
     @Override
     public String toString() {
-        return "Canton= " + nombre;
+        return nombre;
     }
     
     @Override

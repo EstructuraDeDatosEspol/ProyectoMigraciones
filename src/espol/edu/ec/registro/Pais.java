@@ -19,12 +19,14 @@ public class Pais {
     private String nombre;
     private int codContinente;
     private int codPais;
+    private String codSubContinente;
 
-    public Pais(int codPais, int codContinente, String nombre) {
+    public Pais(int codPais, String  codSubContinente, int codContinente, String nombre) {
         this.nombre = nombre;
         this.codContinente = codContinente;
         this.codPais = codPais;
-        mapaProvincias = cargarProvinciasM("Provincias.txt", codPais, codContinente);
+        this.codSubContinente = codSubContinente;
+        mapaProvincias = cargarProvinciasM("Provincias.txt", codPais, codContinente, codSubContinente);
     }
 
     public int getCodPais() {
@@ -59,12 +61,20 @@ public class Pais {
         this.mapaProvincias = mapaProvincias;
     }
 
+    public String getCodSubContinente() {
+        return codSubContinente;
+    }
+
+    public void setCodSubContinente(String codSubContinente) {
+        this.codSubContinente = codSubContinente;
+    }
+
     @Override
     public String toString() {
         return "Pais= "+nombre ;
     }
     
-    public static HashMap<Integer, Provincia> cargarProvinciasM(String nombre, int codigo, int codContinente){
+    public static HashMap<Integer, Provincia> cargarProvinciasM(String nombre, int codigo, int codContinente, String codSubCont){
         HashMap<Integer,Provincia> mapa = new HashMap<>();
         File f = new File("");
         String dire = f.getAbsolutePath();
@@ -76,7 +86,7 @@ public class Pais {
             while ((linea = br.readLine()) != null) {//linea leida
                 String[] separa = linea.split("[\\,]");
                 //guardamos la linea
-                if(Integer.valueOf(separa[1]).equals(codigo))mapa.put(Integer.valueOf(separa[0]), new Provincia(Integer.valueOf(separa[0]),codigo,codContinente,separa[2]));
+                if(Integer.valueOf(separa[1]).equals(codigo))mapa.put(Integer.valueOf(separa[0]), new Provincia(Integer.valueOf(separa[0]),codigo,codSubCont,codContinente,separa[2]));
             }
         } catch (Exception ex) {
             ex.getStackTrace();

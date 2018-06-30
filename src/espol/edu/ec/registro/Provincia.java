@@ -17,16 +17,18 @@ import java.util.HashMap;
 public class Provincia {
     private int codigo;
     private int codPais;
+    private String codSubContinente;
     private int codContinente;
     private String nombre;
     private HashMap<Integer,Canton> mapaCantones;
 
-    public Provincia(int codigo, int codPais, int codContinente, String nombre) {
+    public Provincia(int codigo, int codPais, String codSubContinente, int codContinente, String nombre) {
         this.codigo = codigo;
         this.codPais = codPais;
+        this.codSubContinente = codSubContinente;
         this.codContinente = codContinente;
         this.nombre = nombre;
-        mapaCantones = cargarCantonesM("Cantones.txt", codigo, codPais, codContinente);
+        mapaCantones = cargarCantonesM("Cantones.txt", codigo, codPais, codContinente, codSubContinente);
     }
 
     public int getCodigo() {
@@ -53,6 +55,14 @@ public class Provincia {
         this.codPais = codPais;
     }
 
+    public String getCodSubContinente() {
+        return codSubContinente;
+    }
+
+    public void setCodSubContinente(String codSubContinente) {
+        this.codSubContinente = codSubContinente;
+    }
+
     public int getCodContinente() {
         return codContinente;
     }
@@ -74,7 +84,7 @@ public class Provincia {
         return "Provincia= " + nombre;
     }
     
-    public static HashMap<Integer, Canton> cargarCantonesM(String nombre, int codigo, int codPais, int codContinente){
+    public static HashMap<Integer, Canton> cargarCantonesM(String nombre, int codigo, int codPais, int codContinente, String codSub){
         HashMap<Integer,Canton> mapa = new HashMap<>();
         File f = new File("");
         String dire = f.getAbsolutePath();
@@ -86,7 +96,7 @@ public class Provincia {
             while ((linea = br.readLine()) != null) {//linea leida
                 String[] separa = linea.split("[\\,]");
                 //guardamos la linea
-                if(Integer.valueOf(separa[1]).equals(codigo))mapa.put(Integer.valueOf(separa[0]), new Canton(Integer.valueOf(separa[0]),codigo,codPais,codContinente,separa[2]));
+                if(Integer.valueOf(separa[1]).equals(codigo))mapa.put(Integer.valueOf(separa[0]), new Canton(Integer.valueOf(separa[0]),codigo,codPais,codSub,codContinente,separa[2]));
             }
         } catch (Exception ex) {
             ex.getStackTrace();

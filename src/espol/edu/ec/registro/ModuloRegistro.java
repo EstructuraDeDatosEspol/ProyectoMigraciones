@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -25,6 +26,7 @@ public class ModuloRegistro {
     private LinkedList<Persona> listPersonas;
     private HashMap<Integer,Continente> listContinentes;
     private LinkedList<Canton> listCantones;
+    private String canton;
 
     public ModuloRegistro() {
         root = new Pane();
@@ -34,6 +36,7 @@ public class ModuloRegistro {
         listRegistroMigrantes = new ReadWriter().cargarRegistro("Registros.txt");
         listCantones = referenciarCantones(listContinentes);
         enlazarListas();
+        System.out.println(listContinentes.get(1).getMapaSub());
         System.out.println(listRegistroMigrantes.getLast());
         listCantones.get(39).getList().get(0).setAnio_movi(1);
         System.out.println(listRegistroMigrantes.getLast());
@@ -52,17 +55,27 @@ public class ModuloRegistro {
         boton3.setDisable(true);
         boton3.setTranslateX(1100);
         boton3.setTranslateY(380);
-        DisenioFormulario disenioFormulario = new DisenioFormulario(root);
+        DisenioFormulario disenioFormulario = new DisenioFormulario(root,listCantones);
         disenioFormulario.getText10().setOnKeyPressed((KeyEvent ke) -> {
-            if (ke.getCode().equals(KeyCode.ENTER))
-            {
+            if (ke.getCode().equals(KeyCode.ENTER)){
                 llenarCamposPersonas(disenioFormulario.getText10().getText(), disenioFormulario);
             }
         });
-        disenioFormulario.getText5().setOnKeyPressed((KeyEvent ke) -> {
-            if (ke.getCode().equals(KeyCode.ENTER))
-            {
-                llenarCampos(disenioFormulario.getText5().getText(), disenioFormulario);
+        
+        disenioFormulario.getComboBox().setOnKeyPressed((KeyEvent ke) -> {
+            if (ke.getCode().equals(KeyCode.ENTER)){
+                llenarCampoProv(disenioFormulario.getComboBox().getValue().toString(), disenioFormulario);
+            }
+        });
+        
+        disenioFormulario.getText17().setOnKeyPressed((KeyEvent ke) -> {
+            if (ke.getCode().equals(KeyCode.ENTER)){
+                llenarCampoContinente(disenioFormulario.getText17().getText(), disenioFormulario.getText21(), disenioFormulario.getText24());
+            }
+        });
+        disenioFormulario.getText18().setOnKeyPressed((KeyEvent ke) -> {
+            if (ke.getCode().equals(KeyCode.ENTER)){
+                llenarCampoContinente(disenioFormulario.getText18().getText(), disenioFormulario.getText22(), null);
             }
         });
         
@@ -124,7 +137,8 @@ public class ModuloRegistro {
             for(Integer p: con.getMapaPaises().keySet()){
                 Pais pais = con.getMapaPaises().get(p);//obtengo el pais perteneciente a ese continente(con clave p)
                 for(Integer pr: pais.getMapaProvincias().keySet()){
-                    Provincia provincia = pais.getMapaProvincias().get(pr);//obtengo la provincia perteneciente a ese pais(con clave pr)
+                    Provincia provincia = pais.getMapaProvincias().get(pr);
+                    //obtengo la provincia perteneciente a ese pais(con clave pr)
                     for(Integer can: provincia.getMapaCantones().keySet()){
                         lista.addLast(provincia.getMapaCantones().get(can));
                     }
@@ -148,13 +162,13 @@ public class ModuloRegistro {
     public void llenarCamposPersonas(String cedula, DisenioFormulario d){
         int ced = Integer.valueOf(cedula);
         for(Persona p: listPersonas){
-            if(p.getCedula().equals(ced)){
+            if(p.getCedula() == (ced)){
                 d.getText11().setText(p.getNombre());
                 d.getText12().setText(p.getApellido());
                 d.getText26().setText(p.getSexo());
                 d.getText13().setText(String.valueOf(p.getAnioNacimiento()));
                 d.getText14().setText(p.getOcupacion());
-                d.getText18().setText(p.getPaisNacimiento());
+                d.getText16().setText(p.getPaisNacimiento());
                 d.getText20().setText(String.valueOf(p.getEdad()));
                 d.getText23().setText(p.getContinenteNacimiento());
                 d.getText25().setText(p.getSubcontnacionalidad());
@@ -163,15 +177,24 @@ public class ModuloRegistro {
         }
     }
     
-    public void llenarCampos(String canton, DisenioFormulario d){
+    public void llenarCampoProv(String canton, DisenioFormulario d){
         for(Canton c: listCantones){
             if(c.getNombre().equals(canton)){
                 Continente cont = listContinentes.get(c.getCodContinente());
-                d.getText21().setText(cont.getNombre());
                 Pais pais = cont.getMapaPaises().get(c.getCodPais());
-                d.getText17().setText(pais.getNombre());
                 Provincia pr = pais.getMapaProvincias().get(c.getCodigoProv());
-                d.getText4().setText(pr.getNombre());                
+                d.getText4().setText(pr.getNombre());
+            }
+        }
+    }
+    
+    public void llenarCampoContinente(String pais, TextField tf, TextField tf2){
+        for(Map.Entry<Integer, Continente> e: listContinentes.entrySet()){
+            for(Map.Entry<Integer, Pais> p: e.getValue().getMapaPaises().entrySet()){
+                if(pais.equals(p.getValue().getNombre())){
+                    tf.setText(e.getValue().getNombre());
+                    if(tf2!=null)tf2.setText(e.getValue().getMapaSub().get(p.getValue().getCodSubContinente()).getNombre());
+                }
             }
         }
     }

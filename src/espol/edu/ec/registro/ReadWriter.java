@@ -83,9 +83,8 @@ public class ReadWriter{
                 listLineas.addLast(new RegistroMigrante(
                 separa[0],separa[1],separa[2],Integer.valueOf(separa[5]),separa[6],Integer.valueOf(separa[7]),
                 separa[14],separa[16],separa[17],separa[18],separa[20],separa[21],separa[23],
-                new Persona(separa[8],separa[9],separa[10],separa[11],Integer.valueOf(separa[12]),separa[13],Integer.valueOf(separa[19]),separa[15],separa[22],separa[24]),
-                new Canton(separa[4])
-                        ));//guardamos la linea
+                new Persona(Integer.parseInt(separa[8]),separa[9],separa[10],separa[11],Integer.valueOf(separa[12]),separa[13],Integer.valueOf(separa[19]),separa[15],separa[22],separa[24]),
+                new Canton(separa[4])));//guardamos la linea
             }
         } catch (Exception ex) {
             ex.getStackTrace();
@@ -103,7 +102,7 @@ public class ReadWriter{
             while ((linea = br.readLine()) != null) {//linea leida
                 String[] separa = linea.split(separar);
                 listLineas.addLast(new Persona(
-                separa[0],separa[1],separa[2],separa[3],Integer.valueOf(separa[4]),separa[5],Integer.valueOf(separa[6]),separa[7],separa[8],separa[9]));//guardamos la linea
+                Integer.parseInt(separa[0]),separa[1],separa[2],separa[3],Integer.valueOf(separa[4]),separa[5],Integer.valueOf(separa[6]),separa[7],separa[8],separa[9]));//guardamos la linea
             }
         } catch (Exception ex) {
             ex.getStackTrace();
