@@ -1,0 +1,63 @@
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-background-color: #001c3a;
+}
+
+#anchor {
+    -fx-background-color: #000000;
+}
+
+#tituloTabla1{
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI bold";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+#tituloTabla2{
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI bold";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+.split-pane{
+    -fx-background-color: #3e3e3e;
+}
+
+.label {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Segoe UI bold";
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+}
+
+.combo-box .list-cell
+{
+    -fx-background: white;
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-base-color;
+    -fx-padding: 3 0 2 7;
+    -fx-cell-size: 2em;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover
+{
+    -fx-background: -fx-accent;
+    -fx-background-color: -fx-selection-bar;
+    -fx-text-fill: -fx-selection-bar-text;
+}
+
+.combo-box-base:hover
+{
+    -fx-color: -fx-hover-base;
+}
+
+.combo-box-base:showing
+{
+    -fx-color: -fx-pressed-base;
+}
+
+.combo-box-base:focused {
+    -fx-background-color: -fx-focus-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-radius: 6.4, 4, 5, 3;
+    -fx-background-insets: -1.4, 0, 1, 2;
+}

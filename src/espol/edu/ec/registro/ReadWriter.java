@@ -84,7 +84,7 @@ public class ReadWriter{
             String linea;
             br.readLine();
             while ((linea = br.readLine()) != null) {//linea leida
-                String[] separa = linea.split(separar);
+                String[] separa = linea.split(",");
                 listLineas.addLast(new RegistroMigrante(
                 separa[0],separa[1],separa[2],Integer.valueOf(separa[5]),separa[6],Integer.valueOf(separa[7]),
                 separa[14],separa[16],separa[17],separa[18],separa[20],separa[21],separa[23],

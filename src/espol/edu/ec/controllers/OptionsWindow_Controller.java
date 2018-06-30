@@ -49,20 +49,4 @@ public class OptionsWindow_Controller {
 
         stageProcesamiento.show();
     }
-
-    public Parent getRootAddTurn() {
-        return rootAddTurn;
-    }
-
-    public Stage getAddTurnStage() {
-        return addTurnStage;
-    }
-
-    public Stage getAdminRegStage() {
-        return adminRegStage;
-    }
-
-    public void setRootAddTurn(Parent rootAddTurn) {
-        this.rootAddTurn = rootAddTurn;
-    }
 }
