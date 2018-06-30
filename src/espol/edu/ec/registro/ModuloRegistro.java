@@ -36,8 +36,7 @@ public class ModuloRegistro {
         listRegistroMigrantes = new ReadWriter().cargarRegistro("Registros.txt");
         listCantones = referenciarCantones(listContinentes);
         enlazarListas();
-        System.out.println(listContinentes.get(1).getMapaSub());
-        System.out.println(listRegistroMigrantes.getLast());
+        
         listCantones.get(39).getList().get(0).setAnio_movi(1);
         System.out.println(listRegistroMigrantes.getLast());
         System.out.println(listPersonas.getLast().getList());
