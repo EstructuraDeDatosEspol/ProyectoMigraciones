@@ -31,11 +31,17 @@ public class Main extends Application {
 
         optionsWindow.setTitle("Sistema de Migraciones.");
         optionsWindow.setScene(new Scene(rootOptions));
-        optionsWindow.show();
-
         initRootTurnShower();
+        optionsWindow.show();
+        optionsWindow.setOnCloseRequest(e -> turnsWindow.close()); 
 
     }
+    
+    @Override
+    public void stop () throws Exception {
+        SCREEN_TURNOS.endRun();
+    }
+    
     public static void main(String[] args) {
         launch(args);
     }

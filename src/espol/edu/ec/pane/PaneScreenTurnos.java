@@ -25,7 +25,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -69,6 +68,7 @@ public class PaneScreenTurnos {
         topPane();
         cargarListaVideos();
         centerPane();
+        bottomPane();
     }
     
     private void topPane(){
@@ -80,10 +80,10 @@ public class PaneScreenTurnos {
         Text text = new Text();
         text.setText(reloj.format(DateTimeFormatter.ofPattern("HH:mm")));
         hbox.getChildren().addAll(deb,text);
-        hbox.setSpacing(Const.MAX_WIDTH - text.getText().length()*20 - deb.getImage().getWidth() - Const.MAX_WIDTH/30);
+        hbox.setSpacing(Const.MAX_WIDTH - text.getText().length()*25 - deb.getImage().getWidth() - Const.MAX_WIDTH/30);
         pane.getChildren().add(hbox);
         text.setFill(Color.color(0.408, 0.718, 0.898)); 
-        text.setFont(Font.font(30)); 
+        text.setFont(Font.font(38)); 
         text.setStyle(Const.FONT_BOLD); 
         Runnable run = () -> {
             long seconds = reloj.getSecond();
@@ -92,7 +92,7 @@ public class PaneScreenTurnos {
                 sleep(seconds);
                 LocalTime lt = LocalTime.now();
                 Platform.runLater(() -> text.setText(lt.format(DateTimeFormatter.ofPattern("HH:mm"))));
-                seconds = 60000;    
+                seconds = 1000;    
             }
         };
         
@@ -130,10 +130,14 @@ public class PaneScreenTurnos {
             while(isRun){
                 Video v = i.next();
                 Platform.runLater(() -> reproductor.setMediaPlayer(v.getMedia()));
-                v.getMedia().play();
-                sleep(v.getDuration());
-                v.getMedia().stop();
-            }    
+                try{
+                    v.getMedia().play();
+                    sleep(v.getDuration());
+                    v.getMedia().stop();
+                }catch(NullPointerException ex){
+                    
+                }
+            } 
         };
         Thread t = new Thread(media);
         t.start();
@@ -162,6 +166,27 @@ public class PaneScreenTurnos {
             r4.setFill(Color.color(0.392, 0.529, 0.667));
             panel.getChildren().add(new HBox(new StackPane(r3), new StackPane(r4)));
         } 
+    }
+    
+    private void bottomPane() {
+        double width = Const.MAX_WIDTH - Const.MAX_WIDTH/19.5;
+        StackPane barra = new StackPane();
+        Rectangle r = new Rectangle(width, Const.MAX_HEIGHT/17);
+        r.setFill(Color.color(0.408, 0.718, 0.898));
+        VBox box = new VBox();
+        Text m = new Text("H o r a r i o   d e   a t e n c i ó n   d e   L u n e s   a   V i e r n e s   d e   1 0   a   1 8   h s / S á b a d o s");
+        m.setFont(Font.font("Arial", 27)); 
+        m.setFill(Color.WHITE); 
+        m.setStyle(Const.FONT_BOLD);
+        HBox hbox = new HBox(m);
+        hbox.setAlignment(Pos.CENTER_LEFT);
+        hbox.setPadding(new Insets(0, 0, 0, Const.MAX_WIDTH/27));
+        barra.getChildren().addAll(r, hbox);
+        Rectangle re = new Rectangle(r.getWidth(), r.getHeight()/2.5);
+        re.setFill(Color.WHITE);
+        re.setTranslateX(Const.MAX_WIDTH/30); 
+        box.getChildren().addAll(re, barra);
+        pane.getChildren().add(box);
     }
     
     public boolean isFull() {

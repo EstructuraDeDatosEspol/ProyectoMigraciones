@@ -8,7 +8,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class OptionsWindow_Controller {
 
@@ -19,6 +21,9 @@ public class OptionsWindow_Controller {
     void handle_addTurn() throws IOException {
         rootAddTurn= FXMLLoader.load(getClass().getResource("../views/AddTurnWindow.fxml"));
         addTurnStage = new Stage();
+        addTurnStage.setResizable(false);
+        addTurnStage.initModality(Modality.APPLICATION_MODAL);
+        addTurnStage.initStyle(StageStyle.UTILITY); 
         addTurnStage.setScene(new Scene(new PaneModulo1().getRoot()));
         addTurnStage.show();
     }
