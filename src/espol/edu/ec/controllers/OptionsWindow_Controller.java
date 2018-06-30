@@ -4,6 +4,8 @@ import espol.edu.ec.pane.PaneModulo1;
 import espol.edu.ec.registro.ModuloRegistro;
 import java.io.IOException;
 
+import espol.edu.ec.moduloProcesamiento.ModuloProcesamiento;
+import espol.edu.ec.moduloProcesamiento.ProcesadorDeRegistro;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,12 +16,12 @@ import javafx.stage.StageStyle;
 
 public class OptionsWindow_Controller {
 
-    private Parent rootAddTurn,rootAdminReg;
-    private Stage addTurnStage, adminRegStage;
+    private Parent rootProcesamiento;
+    private Stage addTurnStage, adminRegStage, stageProcesamiento;
 
     @FXML
     void handle_addTurn() throws IOException {
-        rootAddTurn= FXMLLoader.load(getClass().getResource("../views/AddTurnWindow.fxml"));
+
         addTurnStage = new Stage();
         addTurnStage.setResizable(false);
         addTurnStage.initModality(Modality.APPLICATION_MODAL);
@@ -31,23 +33,21 @@ public class OptionsWindow_Controller {
 
     @FXML
     void handle_AdminReg() throws IOException {
-
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../views/AdminRegistrosWindow.fxml"));
-        rootAdminReg = loader.load();
         
         adminRegStage = new Stage();
         new ModuloRegistro().pantalla(adminRegStage);
-        //adminRegStage.setScene(new Scene(rootAdminReg));
         adminRegStage.show();
-
-        AdminRegistrosController controller = loader.getController();
-        controller.setAdminRegStage(adminRegStage);
     }
 
     @FXML
-    void handle_showProv(){
+    void handle_showModuloProcesamiento()throws Exception{
+        stageProcesamiento=new Stage();
+        stageProcesamiento.setTitle("Contador de Registros");
 
+        rootProcesamiento = FXMLLoader.load(getClass().getResource("../moduloProcesamiento/ModuloProcesamiento.fxml"));
+        stageProcesamiento.setScene(new Scene(rootProcesamiento));
+
+        stageProcesamiento.show();
     }
 
     public Parent getRootAddTurn() {
