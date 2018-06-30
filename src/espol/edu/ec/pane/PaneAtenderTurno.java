@@ -103,5 +103,10 @@ public class PaneAtenderTurno {
     public Pane getPane() {
         return pane;
     }
+    
+    public void updatePuestos() {
+        puestos.getItems().clear();
+        puestos.getItems().addAll(atencion.keySet());
+    }
 
 }

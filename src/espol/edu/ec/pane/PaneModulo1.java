@@ -42,10 +42,11 @@ public class PaneModulo1 {
     private final static PaneScreenTurnos SCREEN = Main.getRootTurnShower();
     private final static PaneTurnoGenerador SECCION_TURNO = new PaneTurnoGenerador(ATENCION, SCREEN);
     private final static PaneAtenderTurno SECCION_ATENDER = new PaneAtenderTurno(ATENCION, SCREEN, SECCION_TURNO);
+        private final static PaneAdminPuestos SECCION_PUESTOS = new PaneAdminPuestos(ATENCION, SECCION_ATENDER);
     public PaneModulo1() {
         root = new BorderPane();
         root.setCenter(SECCION_TURNO.getPane()); 
-        root.setMinSize(Const.MAX_WIDTH/3.5, Const.MAX_HEIGHT/4);
+        root.setMinSize(Const.MAX_WIDTH/3, Const.MAX_HEIGHT/2.7);
         leftPane();
         loadMap();
     }
@@ -73,6 +74,10 @@ public class PaneModulo1 {
         atender.setOnMouseClicked(e-> {
             root.setCenter(SECCION_ATENDER.getPane()); 
         });
+        
+        puesto.setOnMouseClicked(e -> {
+            root.setCenter(SECCION_PUESTOS.getPane()); 
+        }); 
     }
     
     private StackPane opcion(String text, ImageView image) {

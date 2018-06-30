@@ -37,6 +37,14 @@ public class Persona {
         this.subcontNacionalidad = subcontNacionalidad;
         list = new LinkedList<>();
     }
+    
+    public Persona(int cedula, String nombre, String apellido, String sexo, int edad) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.sexo = sexo;
+        this.edad = edad;
+    }
 
     public LinkedList<RegistroMigrante> getList() {
         return list;

@@ -6,12 +6,12 @@
 package espol.edu.ec.tda;
 
 import espol.edu.ec.registro.Persona;
+import espol.edu.ec.registro.ReadWriter;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -68,26 +68,8 @@ public class Puesto {
         return Integer.parseInt(puesto);
     }
     
-     private static Map<String, Persona> loadEmpleados() {
-        HashMap<String, Persona> mapa = new HashMap<>();
-        String file = new File("").getAbsolutePath();
-        file = Paths.get(file, "src", "espol", "edu", "ec", "recursos", "files", "empleados.txt").toString();
-        
-        try(BufferedReader br = new BufferedReader(new FileReader(file))){
-            String line;
-            while((line=br.readLine()) != null){
-                String[] data = line.split(",");
-                mapa.put(data[0], 
-                        new Persona(data[0], data[1], data[2], data[3], Integer.parseInt(data[4]))); 
-            }
-        }catch(IOException ex){
-            Logger.getLogger(Puesto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return mapa;
-    }
-    
     public static List<Puesto> cargarPuestos() {
-        Map<String, Persona> empleados = loadEmpleados();
+        Map<String, Persona> empleados = ReadWriter.loadEmpleados();
         List<Puesto> puestos = new LinkedList<>();
         String file = new File("").getAbsolutePath();
         file = Paths.get(file, "src", "espol", "edu", "ec", "recursos", "files", "puestos.txt").toString();

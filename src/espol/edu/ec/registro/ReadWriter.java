@@ -1,16 +1,21 @@
 package espol.edu.ec.registro;
 
+import espol.edu.ec.tda.Puesto;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 //Declaracion de la clase
  
@@ -125,5 +130,23 @@ public class ReadWriter{
             ex.getStackTrace();
         }
         return listLineas;
+    }
+    
+    public static Map<String, Persona> loadEmpleados() {
+        HashMap<String, Persona> mapa = new HashMap<>();
+        String file = new File("").getAbsolutePath();
+        file = Paths.get(file, "src", "espol", "edu", "ec", "recursos", "files", "empleados.txt").toString();
+        
+        try(BufferedReader br = new BufferedReader(new FileReader(file))){
+            String line;
+            while((line=br.readLine()) != null){
+                String[] data = line.split(",");
+                mapa.put(data[0], 
+                        new Persona(Integer.parseInt(data[0]), data[1], data[2], data[3], Integer.parseInt(data[4]))); 
+            }
+        }catch(IOException ex){
+            Logger.getLogger(Puesto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return mapa;
     }
 }
