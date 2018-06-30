@@ -12,12 +12,12 @@ package espol.edu.ec.registro;
 public class SubContinente {
     private int codigo;
     private int codContinente;
-    private String subcontinente;
+    private String nombre;
 
-    public SubContinente(int codigo, int codContinente, String subcontinente) {
+    public SubContinente(int codigo, int codContinente, String nombre) {
         this.codigo = codigo;
         this.codContinente = codContinente;
-        this.subcontinente = subcontinente;
+        this.nombre = nombre;
     }
 
     public int getCodigo() {
@@ -36,13 +36,16 @@ public class SubContinente {
         this.codContinente = codContinente;
     }
 
-    public String getSubcontinente() {
-        return subcontinente;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setSubcontinente(String subcontinente) {
-        this.subcontinente = subcontinente;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
-    
+    @Override
+    public String toString(){
+        return nombre;
+    }
 }

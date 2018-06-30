@@ -10,6 +10,8 @@ import java.util.LinkedList;
 import java.util.Map;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -39,7 +41,7 @@ public class ModuloRegistro {
         System.out.println(listCantones.get(39).getList());
         
         Button boton1 = new Button("Registrar");
-        boton1.setDisable(true);
+        //boton1.setDisable(true);
         boton1.setTranslateX(1100);
         boton1.setTranslateY(300);
         Button boton2 = new Button("Modificar");
@@ -51,6 +53,18 @@ public class ModuloRegistro {
         boton3.setTranslateX(1100);
         boton3.setTranslateY(380);
         DisenioFormulario disenioFormulario = new DisenioFormulario(root);
+        disenioFormulario.getText10().setOnKeyPressed((KeyEvent ke) -> {
+            if (ke.getCode().equals(KeyCode.ENTER))
+            {
+                llenarCamposPersonas(disenioFormulario.getText10().getText(), disenioFormulario);
+            }
+        });
+        disenioFormulario.getText5().setOnKeyPressed((KeyEvent ke) -> {
+            if (ke.getCode().equals(KeyCode.ENTER))
+            {
+                llenarCampos(disenioFormulario.getText5().getText(), disenioFormulario);
+            }
+        });
         
         boton1.setOnAction(e -> System.out.println("registrar"));
         boton2.setOnAction(e -> System.out.println("modificar"));
@@ -127,6 +141,37 @@ public class ModuloRegistro {
             }
             for(Canton c: listCantones){
                 if(rm.getCanton().equals(c))c.getList().addLast(rm);
+            }
+        }
+    }
+    
+    public void llenarCamposPersonas(String cedula, DisenioFormulario d){
+        int ced = Integer.valueOf(cedula);
+        for(Persona p: listPersonas){
+            if(p.getCedula().equals(ced)){
+                d.getText11().setText(p.getNombre());
+                d.getText12().setText(p.getApellido());
+                d.getText26().setText(p.getSexo());
+                d.getText13().setText(String.valueOf(p.getAnioNacimiento()));
+                d.getText14().setText(p.getOcupacion());
+                d.getText18().setText(p.getPaisNacimiento());
+                d.getText20().setText(String.valueOf(p.getEdad()));
+                d.getText23().setText(p.getContinenteNacimiento());
+                d.getText25().setText(p.getSubcontnacionalidad());
+                
+            }
+        }
+    }
+    
+    public void llenarCampos(String canton, DisenioFormulario d){
+        for(Canton c: listCantones){
+            if(c.getNombre().equals(canton)){
+                Continente cont = listContinentes.get(c.getCodContinente());
+                d.getText21().setText(cont.getNombre());
+                Pais pais = cont.getMapaPaises().get(c.getCodPais());
+                d.getText17().setText(pais.getNombre());
+                Provincia pr = pais.getMapaProvincias().get(c.getCodigoProv());
+                d.getText4().setText(pr.getNombre());                
             }
         }
     }

@@ -12,7 +12,7 @@ import java.util.LinkedList;
  * @author SSAM
  */
 public class Persona {
-    private int cedula;
+    private String cedula;
     private String nombre;
     private String apellido;
     private String sexo;
@@ -24,7 +24,7 @@ public class Persona {
     private String subcontNacionalidad;
     private LinkedList<RegistroMigrante> list;
 
-    public Persona(int cedula, String nombre, String apellido, String sexo, int anioNacimiento, String ocupacion, int edad, String paisNacimiento, String continenteNacimiento, String subcontNacionalidad) {
+    public Persona(String cedula, String nombre, String apellido, String sexo, int anioNacimiento, String ocupacion, int edad, String paisNacimiento, String continenteNacimiento, String subcontNacionalidad) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -46,11 +46,11 @@ public class Persona {
         this.list = list;
     }
 
-    public int getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
@@ -135,6 +135,6 @@ public class Persona {
     public boolean equals(Object o){
         if(o == null || !(o instanceof Persona))return false;
         Persona p = (Persona)o;
-        return cedula == p.cedula;
+        return cedula.equals(p.cedula);
     }
 }

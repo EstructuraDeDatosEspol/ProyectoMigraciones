@@ -10,7 +10,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.TextAlignment;
 
 /**
  *
@@ -41,9 +40,11 @@ public class DisenioFormulario {
     private TextField text23;
     private TextField text24;
     private TextField text25;
+    private TextField text26;
 
     public DisenioFormulario(Pane root) {
         this.root = root;
+        root.getStylesheets().add(DisenioFormulario.class.getResource("/espol/edu/ec/registro/estilo.css").toExternalForm());
         int n = 30;
         int espacio = 45;
         int enX = 200;
@@ -51,7 +52,6 @@ public class DisenioFormulario {
         int enX2 = 700;
         int enXTexto2 = 900;
         Label label1 = new Label("Tipo de Movimiento:");
-        label1.setTextAlignment(TextAlignment.RIGHT);
         label1.setTranslateX(enX);
         label1.setTranslateY(n);
         text1 = new TextField();
@@ -59,7 +59,6 @@ public class DisenioFormulario {
         text1.setTranslateY(n);
         
         Label label2 = new Label("Tipo de Nacionalidad:");
-        label2.setTextAlignment(TextAlignment.RIGHT);
         label2.setTranslateX(enX);
         label2.setTranslateY(n+=espacio);
         text2 = new TextField();
@@ -67,31 +66,27 @@ public class DisenioFormulario {
         text2.setTranslateY(n);
         
         Label label3 = new Label("Via Transporte:");
-        label3.setTextAlignment(TextAlignment.RIGHT);
         label3.setTranslateX(enX);
         label3.setTranslateY(n+=espacio);
         text3 = new TextField();
         text3.setTranslateX(enXTexto);
         text3.setTranslateY(n);
         
-        Label label4 = new Label("Provincia Movimiento:");
-        label4.setTextAlignment(TextAlignment.RIGHT);
-        label4.setTranslateX(enX);
-        label4.setTranslateY(n+=espacio);
-        text4 = new TextField();
-        text4.setTranslateX(enXTexto);
-        text4.setTranslateY(n);
-        
         Label label5 = new Label("Canton Movimiento:");
-        label5.setTextAlignment(TextAlignment.RIGHT);
         label5.setTranslateX(enX);
         label5.setTranslateY(n+=espacio);
         text5 = new TextField();
         text5.setTranslateX(enXTexto);
         text5.setTranslateY(n);
         
+        Label label4 = new Label("Provincia Movimiento:");
+        label4.setTranslateX(enX);
+        label4.setTranslateY(n+=espacio);
+        text4 = new TextField();
+        text4.setTranslateX(enXTexto);
+        text4.setTranslateY(n);
+        
         Label label6 = new Label("Fecha Movimiento:");
-        label6.setTextAlignment(TextAlignment.RIGHT);
         label6.setTranslateX(enX);
         label6.setTranslateY(n+=espacio);
         calendario = new DatePicker();
@@ -100,7 +95,6 @@ public class DisenioFormulario {
         calendario.setValue(LocalDate.now());
         
         Label label9 = new Label("Via Transporte:");
-        label9.setTextAlignment(TextAlignment.RIGHT);
         label9.setTranslateX(enX);
         label9.setTranslateY(n+=espacio);
         text9 = new TextField();
@@ -108,15 +102,14 @@ public class DisenioFormulario {
         text9.setTranslateY(n);
         
         Label label10 = new Label("Cedula:");
-        label10.setTextAlignment(TextAlignment.RIGHT);
         label10.setTranslateX(enX);
         label10.setTranslateY(n+=espacio);
         text10 = new TextField();
         text10.setTranslateX(enXTexto);
         text10.setTranslateY(n);
         
+        
         Label label11 = new Label("Nombre:");
-        label11.setTextAlignment(TextAlignment.RIGHT);
         label11.setTranslateX(enX);
         label11.setTranslateY(n+=espacio);
         text11 = new TextField();
@@ -124,15 +117,20 @@ public class DisenioFormulario {
         text11.setTranslateY(n);
         
         Label label12 = new Label("Apellido:");
-        label12.setTextAlignment(TextAlignment.RIGHT);
         label12.setTranslateX(enX);
         label12.setTranslateY(n+=espacio);
         text12 = new TextField();
         text12.setTranslateX(enXTexto);
         text12.setTranslateY(n);
         
+        Label label26 = new Label("Sexo:");
+        label26.setTranslateX(enX);
+        label26.setTranslateY(n+=espacio);
+        text26 = new TextField();
+        text26.setTranslateX(enXTexto);
+        text26.setTranslateY(n);
+        
         Label label13 = new Label("Anio Nacimiento:");
-        label13.setTextAlignment(TextAlignment.RIGHT);
         label13.setTranslateX(enX);
         label13.setTranslateY(n+=espacio);
         text13 = new TextField();
@@ -140,7 +138,6 @@ public class DisenioFormulario {
         text13.setTranslateY(n);
         
         Label label14 = new Label("Ocupacion Migrante:");
-        label14.setTextAlignment(TextAlignment.RIGHT);
         label14.setTranslateX(enX);
         label14.setTranslateY(n+=espacio);
         text14 = new TextField();
@@ -148,7 +145,6 @@ public class DisenioFormulario {
         text14.setTranslateY(n);
         
         Label label15 = new Label("Motivo viaje:");
-        label15.setTextAlignment(TextAlignment.RIGHT);
         label15.setTranslateX(enX);
         label15.setTranslateY(n+=espacio);
         text15 = new TextField();
@@ -156,23 +152,20 @@ public class DisenioFormulario {
         text15.setTranslateY(n);
         
         Label label16 = new Label("Nacionalidad Migrate:");
-        label16.setTextAlignment(TextAlignment.RIGHT);
-        label16.setTranslateX(enX);
-        label16.setTranslateY(n+=espacio);
+        label16.setTranslateX(enX2);
+        label16.setTranslateY(n=30);
         text16 = new TextField();
-        text16.setTranslateX(enXTexto);
+        text16.setTranslateX(enXTexto2);
         text16.setTranslateY(n);
         
         Label label17 = new Label("Pais Procedencia:");
-        label17.setTextAlignment(TextAlignment.RIGHT);
         label17.setTranslateX(enX2);
-        label17.setTranslateY(n=30);
+        label17.setTranslateY(n+=espacio);
         text17 = new TextField();
         text17.setTranslateX(enXTexto2);
         text17.setTranslateY(n);
         
         Label label18 = new Label("Pais Residencia:");
-        label18.setTextAlignment(TextAlignment.RIGHT);
         label18.setTranslateX(enX2);
         label18.setTranslateY(n+=espacio);
         text18 = new TextField();
@@ -180,7 +173,6 @@ public class DisenioFormulario {
         text18.setTranslateY(n);
         
         Label label19 = new Label("Lugar Proveniente:");
-        label19.setTextAlignment(TextAlignment.RIGHT);
         label19.setTranslateX(enX2);
         label19.setTranslateY(n+=espacio);
         text19 = new TextField();
@@ -188,7 +180,6 @@ public class DisenioFormulario {
         text19.setTranslateY(n);
         
         Label label20 = new Label("Edad:");
-        label20.setTextAlignment(TextAlignment.RIGHT);
         label20.setTranslateX(enX2);
         label20.setTranslateY(n+=espacio);
         text20 = new TextField();
@@ -196,7 +187,6 @@ public class DisenioFormulario {
         text20.setTranslateY(n);
         
         Label label21 = new Label("Continente Procedencia:");
-        label21.setTextAlignment(TextAlignment.RIGHT);
         label21.setTranslateX(enX2);
         label21.setTranslateY(n+=espacio);
         text21 = new TextField();
@@ -204,7 +194,6 @@ public class DisenioFormulario {
         text21.setTranslateY(n);
         
         Label label22 = new Label("Continente Residencia:");
-        label22.setTextAlignment(TextAlignment.RIGHT);
         label22.setTranslateX(enX2);
         label22.setTranslateY(n+=espacio);
         text22 = new TextField();
@@ -212,7 +201,6 @@ public class DisenioFormulario {
         text22.setTranslateY(n);
         
         Label label23 = new Label("Continente Nacimiento:");
-        label23.setTextAlignment(TextAlignment.RIGHT);
         label23.setTranslateX(enX2);
         label23.setTranslateY(n+=espacio);
         text23 = new TextField();
@@ -220,15 +208,13 @@ public class DisenioFormulario {
         text23.setTranslateY(n);
         
         Label label24 = new Label("Subcontinente Procedencia:");
-        label24.setTextAlignment(TextAlignment.RIGHT);
         label24.setTranslateX(enX2);
         label24.setTranslateY(n+=espacio);
         text24 = new TextField();
         text24.setTranslateX(enXTexto2);
         text24.setTranslateY(n);
         
-        Label label25 = new Label("Subcontinente Nacionalidad:");
-        label25.setTextAlignment(TextAlignment.RIGHT);
+        Label label25 = new Label("Subcontinente Nacimiento:");
         label25.setTranslateX(enX2);
         label25.setTranslateY(n+=espacio);
         text25 = new TextField();
@@ -237,9 +223,9 @@ public class DisenioFormulario {
         
         
         root.getChildren().addAll(label1,label2,label3,label4,label5,label6,calendario,label9,label10,label11,label12,
-                label13,label14,label15,label16,label17,label18,label19,label20,label21,label22,label23,label24,label25,
+                label13,label14,label15,label16,label17,label18,label19,label20,label21,label22,label23,label24,label25,label26,
                 text1,text2,text3,text4,text5,text9,text10,text11,text12,text13,text14,text15,text16,text17,text18,text19,
-                text20,text21,text22,text23,text24,text25);
+                text20,text21,text22,text23,text24,text25,text26);
     }
 
     public Pane getRoot() {
@@ -432,5 +418,13 @@ public class DisenioFormulario {
 
     public void setText25(TextField text25) {
         this.text25 = text25;
+    }
+
+    public TextField getText26() {
+        return text26;
+    }
+
+    public void setText26(TextField text26) {
+        this.text26 = text26;
     }
 }
