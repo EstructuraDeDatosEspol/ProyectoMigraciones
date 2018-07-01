@@ -28,7 +28,6 @@ public class Main extends Application {
 
         rootOptions = FXMLLoader.load(getClass().getResource("../views/OptionsWindow.fxml"));
 
-
         optionsWindow.setTitle("Sistema de Migraciones.");
         optionsWindow.setScene(new Scene(rootOptions));
         initRootTurnShower();
@@ -55,7 +54,6 @@ public class Main extends Application {
         turnsWindow.setScene(new Scene(pane)); 
         turnsWindow.setFullScreen(false); 
         turnsWindow.show();
-
     }
 
     public static PaneScreenTurnos getRootTurnShower() {

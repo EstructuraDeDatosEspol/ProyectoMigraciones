@@ -49,7 +49,7 @@
                   <TableView fx:id="tablaPorRegion" editable="true" layoutX="13.0" layoutY="79.0" prefHeight="200.0" prefWidth="217.0">
                     <columns>
                       <TableColumn fx:id="colProvinciaRegion" prefWidth="97.0" sortable="false" text="  Provincia" />
-                      <TableColumn fx:id="colCantidadDeRegistros" prefWidth="117.0" sortable="false" text="  Cantidad de &#10;    Registros" />
+                      <TableColumn fx:id="colCantidadDeRegistros" prefWidth="117.0" sortable="false" text="Registros" />
                     </columns>
                   </TableView>
                </children>

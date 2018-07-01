@@ -1,6 +1,38 @@
-.table-view .column-header,
-.table-view .column-header-background .filler {
-    -fx-background-color: #001c3a;
+
+.table-view {
+    -fx-base: #1d1d1d;
+    -fx-control-inner-background: #1d1d1d;
+    -fx-background-color: #1d1d1d;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: rgba(0, 28, 58, 0);
+    -fx-padding: 5;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+
+    -fx-background-color: rgba(56, 60, 74, 0.88);
+    -fx-border-color:
+        transparent
+        transparent
+        derive(-fx-base, 80%)
+        transparent;
+    -fx-border-insets: 0 0 0 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
 }
 
 #anchor {
@@ -28,6 +60,11 @@
     -fx-font-family: "Segoe UI bold";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
+}
+
+.combo-box{
+    -fx-background-color: #7c818c;
+    -fx-text-fill: white;
 }
 
 .combo-box .list-cell
