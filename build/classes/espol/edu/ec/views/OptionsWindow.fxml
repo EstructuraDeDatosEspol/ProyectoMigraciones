@@ -26,7 +26,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="button_showProv" contentDisplay="TOP" layoutX="379.0" layoutY="8.0" mnemonicParsing="false" onAction="#handle_showProv" prefHeight="176.0" prefWidth="173.0" text="Mostrar Datos de &#10;Provincias" textAlignment="CENTER">
+      <Button fx:id="button_showProv" contentDisplay="TOP" layoutX="379.0" layoutY="8.0" mnemonicParsing="false" onAction="#handle_showModuloProcesamiento" prefHeight="176.0" prefWidth="173.0" text="Mostrar Datos de &#10;Provincias" textAlignment="CENTER">
          <graphic>
             <ImageView fitHeight="116.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true">
                <image>

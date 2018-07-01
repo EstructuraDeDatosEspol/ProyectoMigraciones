@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchor" prefHeight="393.0" prefWidth="535.0" stylesheets="@../assets/TableViewStyle.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.moduloProcesamiento.ModuloProcesamiento">
+   <children>
+      <SplitPane dividerPositions="0.528046421663443" layoutX="8.0" layoutY="7.0" prefHeight="379.0" prefWidth="519.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="441.0" prefWidth="245.0">
+               <children>
+                  <TableView fx:id="tablaTotales" editable="true" layoutX="15.0" layoutY="38.0" prefHeight="325.0" prefWidth="229.0">
+                    <columns>
+                      <TableColumn fx:id="colProvincia" prefWidth="75.0" sortable="false" text="Provincia" />
+                        <TableColumn fx:id="colEntradas" prefWidth="75.0" sortable="false" text="Entradas" />
+                      <TableColumn fx:id="colSalidas" prefWidth="75.0" sortable="false" text="Salidas" />
+                    </columns>
+                  </TableView>
+                  <Label fx:id="tituloTabla1" layoutX="66.0" layoutY="14.0" text="Todos los Registros" textAlignment="CENTER" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="377.0" prefWidth="220.0">
+               <children>
+                  <Label fx:id="tituloTabla2" layoutX="54.0" layoutY="14.0" text="Registros Por Región" textAlignment="CENTER" />
+                  <ComboBox fx:id="selectorTipo" layoutX="14.0" layoutY="39.0" onAction="#activarSelectorRegion" prefHeight="25.0" prefWidth="89.0" promptText="Tipo">
+                      <items>
+                          <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="Entradas" />
+                              <String fx:value="Salidas" />
+                          </FXCollections>
+                      </items>
+                  </ComboBox>
+                  <ComboBox fx:id="selectorRegion" disable="true" layoutX="122.0" layoutY="39.0" onAction="#actualizarTablaPorRegion" prefHeight="25.0" prefWidth="96.0" promptText="Región">
+                      <items>
+                          <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="Costa" />
+                              <String fx:value="Sierra" />
+                              <String fx:value="Oriente" />
+                              <String fx:value="Insular" />
+                          </FXCollections>
+                      </items>
+                  </ComboBox>
+                  <TableView fx:id="tablaPorRegion" editable="true" layoutX="13.0" layoutY="79.0" prefHeight="200.0" prefWidth="217.0">
+                    <columns>
+                      <TableColumn fx:id="colProvinciaRegion" prefWidth="97.0" sortable="false" text="  Provincia" />
+                      <TableColumn fx:id="colCantidadDeRegistros" prefWidth="117.0" sortable="false" text="Registros" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

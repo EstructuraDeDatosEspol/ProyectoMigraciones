@@ -33,47 +33,18 @@ public class ReadWriter{
     private final String ubicacion = "\\src\\espol\\edu\\ec\\recursos\\files\\";
     private final String separar = "[\\,]";
     
-    public ArrayList<ArrayList<String>> cargarTitulos(String nombre ){
-        ArrayList<ArrayList<String>> listLineas = new ArrayList<>();
-
+    public String cargarTitulos(String nombre){
         String direccion = dire.substring(0,indiceDeProyecto+11)+ubicacion+nombre;
         try (BufferedReader br = new BufferedReader(new FileReader(new File(direccion)));){
             String linea;            
             // Leemos linea a linea el fichero
-            while ((linea = br.readLine()) != null) {       //linea leida
-                ArrayList<String> listPalabras = new ArrayList<>();
-                
-                //linea separada
-                String[] separa = linea.split(separar);
-                listPalabras.addAll(Arrays.asList(separa));
-                listLineas.add(listPalabras);             //guardamos la linea
+            while ((linea = br.readLine()) != null) {//linea leida
+                return linea;          //guardamos la linea
             }
         } catch (Exception ex) {
             ex.getStackTrace();
         }
-        return listLineas;
-    }
-    
-    public void agregarAlArchivo(List<String> linea, String nombre){
-        String direccion = dire.substring(0,indiceDeProyecto+11)+"src/espol/edu/ec/recursos/files"+nombre;
-       
-	try (BufferedWriter bw = new BufferedWriter(new FileWriter(direccion,true))){
-            int a = linea.size();
-            int n=0;
-            
-            StringBuilder bld = new StringBuilder();
-            for (String palabras : linea) {
-                n++;
-                if(n<a){
-                    bld.append(palabras);
-                    bld.append(",");
-                }else bld.append(palabras);
-            }
-            bw.write(bld.toString());
-            bw.newLine();
-        } catch (IOException ex) {
-            ex.getStackTrace();
-        }
+        return null;
     }
     
     public LinkedList<RegistroMigrante> cargarRegistro(String nombre ){
@@ -89,12 +60,50 @@ public class ReadWriter{
                 separa[0],separa[1],separa[2],Integer.valueOf(separa[5]),separa[6],Integer.valueOf(separa[7]),
                 separa[14],separa[16],separa[17],separa[18],separa[20],separa[21],separa[23],
                 new Persona(Integer.parseInt(separa[8]),separa[9],separa[10],separa[11],Integer.valueOf(separa[12]),separa[13],Integer.valueOf(separa[19]),separa[15],separa[22],separa[24]),
-                new Canton(separa[4])));//guardamos la linea
+                new Canton(separa[4]),separa[3]));//guardamos la linea
             }
         } catch (Exception ex) {
             ex.getStackTrace();
         }
         return listLineas;
+    }
+    
+    public void eliminarRegistro(LinkedList<RegistroMigrante> lineas, String nombre){
+        String direccion = dire.substring(0,indiceDeProyecto+11)+ubicacion+nombre;
+        String titulo = cargarTitulos(nombre);
+	try (BufferedWriter bw = new BufferedWriter(new FileWriter(direccion))){
+            bw.write(titulo);
+            bw.newLine();
+            for(RegistroMigrante reg: lineas){
+                if(reg.getTip_mov() != null){
+                    bw.write(reg.texto());
+                    bw.newLine();
+                }                
+            }
+        } catch (IOException ex) {
+            ex.getStackTrace();
+        }
+    }
+    
+    public void agregarRegistro(List<String> linea, String nombre){
+        String direccion = dire.substring(0,indiceDeProyecto+11)+ubicacion+nombre;
+	try (BufferedWriter bw = new BufferedWriter(new FileWriter(direccion,true))){
+            int a = linea.size();
+            int n=0;
+            
+            StringBuilder bld = new StringBuilder();
+            for (String palabras : linea) {
+                n++;
+                if(n<a){
+                    bld.append(palabras);
+                    bld.append(";");
+                }else bld.append(palabras);
+            }
+            bw.write(bld.toString());
+            bw.newLine();
+        } catch (IOException ex) {
+            ex.getStackTrace();
+        }
     }
     
     public LinkedList<Persona> cargarPersonas(String nombre ){
@@ -115,6 +124,27 @@ public class ReadWriter{
         return listLineas;
     }
     
+    public void agregarPersonas(List<String> linea, String nombre){
+        String direccion = dire.substring(0,indiceDeProyecto+11)+ubicacion+nombre;
+	try (BufferedWriter bw = new BufferedWriter(new FileWriter(direccion,true))){
+            int a = linea.size();
+            int n=0;
+            
+            StringBuilder bld = new StringBuilder();
+            for (String palabras : linea) {
+                n++;
+                if(n<a){
+                    bld.append(palabras);
+                    bld.append(",");
+                }else bld.append(palabras);
+            }
+            bw.write(bld.toString());
+            bw.newLine();
+        } catch (IOException ex) {
+            ex.getStackTrace();
+        }
+    }
+    
     public HashMap<Integer,Continente> cargarContinentes(String nombre ){
         HashMap<Integer,Continente> listLineas = new HashMap<>();
 
@@ -130,6 +160,27 @@ public class ReadWriter{
             ex.getStackTrace();
         }
         return listLineas;
+    }
+    
+    public void agregarCanton(List<String> linea, String nombre){
+        String direccion = dire.substring(0,indiceDeProyecto+11)+ubicacion+nombre;
+	try (BufferedWriter bw = new BufferedWriter(new FileWriter(direccion,true))){
+            int a = linea.size();
+            int n=0;
+            
+            StringBuilder bld = new StringBuilder();
+            for (String palabras : linea) {
+                n++;
+                if(n<a){
+                    bld.append(palabras);
+                    bld.append(";");
+                }else bld.append(palabras);
+            }
+            bw.write(bld.toString());
+            bw.newLine();
+        } catch (IOException ex) {
+            ex.getStackTrace();
+        }
     }
     
     public static Map<String, Persona> loadEmpleados() {

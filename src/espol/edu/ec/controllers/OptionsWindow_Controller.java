@@ -1,7 +1,7 @@
 package espol.edu.ec.controllers;
 
 import espol.edu.ec.pane.PaneModulo1;
-import espol.edu.ec.registro.ModuloRegistro;
+import espol.edu.ec.registro.PantallaOpciones;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
@@ -16,6 +16,7 @@ public class OptionsWindow_Controller {
 
     private Parent rootProcesamiento;
     private Stage addTurnStage, adminRegStage, stageProcesamiento;
+    private PantallaOpciones pantallaOpciones;
 
     @FXML
     void handle_addTurn() throws IOException {
@@ -28,12 +29,11 @@ public class OptionsWindow_Controller {
         addTurnStage.show();
     }
 
-
     @FXML
     void handle_AdminReg() throws IOException {
         
         adminRegStage = new Stage();
-        new ModuloRegistro().pantalla(adminRegStage);
+        pantallaOpciones = new PantallaOpciones(adminRegStage);
         adminRegStage.show();
     }
 

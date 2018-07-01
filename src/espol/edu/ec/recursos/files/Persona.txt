@@ -1,4 +1,4 @@
 ﻿cedula,nombre,apellido,sexo,anioNacimiento,ocupacion,edad,Nacionalidad,continenteNacimiento,subcont_nacionalidad
 0912398574,Juan,Perez,hombre,1990,contador,28,Ecuatoriano,America,Sudamerica
-0912345678,Karla,Mendoza,mujer,1995,ingeniera,23,Español,Europa,Sin Especificar
+0912345678,Karla,Mendoza,mujer,1995,ingeniera,23,Español,Europa,..
 0987654321,Ney,Canales,otro,1998,estudiante,19,Ecuatoriano,America,Sudamerica

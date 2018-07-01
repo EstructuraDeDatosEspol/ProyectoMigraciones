@@ -110,11 +110,11 @@ public class Persona {
         this.edad = edad;
     }
 
-    public String getPaisNacimiento() {
+    public String getNacionalidad() {
         return Nacionalidad;
     }
 
-    public void setPaisNacimiento(String paisNacimiento) {
+    public void setNacionalidad(String paisNacimiento) {
         this.Nacionalidad = paisNacimiento;
     }
 

@@ -43,34 +43,31 @@ public class DisenioFormulario {
     private TextField text25;
     private TextField text26;
     private ComboBox comboBox;
+    private TextField text27;
+    private ComboBox<RegistroMigrante> comboBox2;
 
-    public DisenioFormulario(Pane root,LinkedList<Canton> listCantones) {
+    public DisenioFormulario(Pane root,LinkedList<Canton> listCantones, boolean textf, boolean cb) {
         this.root = root;
         root.getStylesheets().add(DisenioFormulario.class.getResource("/espol/edu/ec/registro/estilo.css").toExternalForm());
-        int n = 30;
+        int n = 70;
         int espacio = 45;
-        int enX = 200;
-        int enXTexto = 400;
-        int enX2 = 700;
-        int enXTexto2 = 900;
+        int enX = 150;
+        int enXTexto = 350;
+        int enX2 = 650;
+        int enXTexto2 = 850;
         Label label1 = new Label("Tipo de Movimiento:");
         label1.setTranslateX(enX);
         label1.setTranslateY(n);
         text1 = new TextField();
+        text1.setDisable(textf);
         text1.setTranslateX(enXTexto);
         text1.setTranslateY(n);
         
-        Label label2 = new Label("Tipo de Nacionalidad:");
-        label2.setTranslateX(enX);
-        label2.setTranslateY(n+=espacio);
-        text2 = new TextField();
-        text2.setTranslateX(enXTexto);
-        text2.setTranslateY(n);
-        
         Label label3 = new Label("Via Transporte:");
         label3.setTranslateX(enX);
-        label3.setTranslateY(n+=espacio);
+        label3.setTranslateY(n+=espacio);        
         text3 = new TextField();
+        text3.setDisable(textf);
         text3.setTranslateX(enXTexto);
         text3.setTranslateY(n);
         
@@ -82,13 +79,24 @@ public class DisenioFormulario {
         comboBox.setEditable(true);
         comboBox.setTranslateX(enXTexto);
         comboBox.setTranslateY(n);
+        comboBox.setValue("Guayaquil");
+        comboBox.setDisable(textf);
         
         Label label4 = new Label("Provincia Movimiento:");
         label4.setTranslateX(enX);
         label4.setTranslateY(n+=espacio);
         text4 = new TextField();
+        text4.setDisable(textf);
         text4.setTranslateX(enXTexto);
         text4.setTranslateY(n);
+        
+        Label label2 = new Label("Pais Movimiento:");
+        label2.setTranslateX(enX);
+        label2.setTranslateY(n+=espacio);
+        text2 = new TextField();
+        text2.setDisable(textf);
+        text2.setTranslateX(enXTexto);
+        text2.setTranslateY(n);
         
         Label label6 = new Label("Fecha Movimiento:");
         label6.setTranslateX(enX);
@@ -97,11 +105,13 @@ public class DisenioFormulario {
         calendario.setTranslateX(enXTexto);
         calendario.setTranslateY(n);
         calendario.setValue(LocalDate.now());
+        calendario.setDisable(textf);
         
         Label label10 = new Label("Cedula:");
         label10.setTranslateX(enX);
         label10.setTranslateY(n+=espacio);
         text10 = new TextField();
+        text10.setDisable(!cb);
         text10.setTranslateX(enXTexto);
         text10.setTranslateY(n);
         
@@ -110,6 +120,7 @@ public class DisenioFormulario {
         label11.setTranslateX(enX);
         label11.setTranslateY(n+=espacio);
         text11 = new TextField();
+        text11.setDisable(!cb);
         text11.setTranslateX(enXTexto);
         text11.setTranslateY(n);
         
@@ -117,6 +128,7 @@ public class DisenioFormulario {
         label12.setTranslateX(enX);
         label12.setTranslateY(n+=espacio);
         text12 = new TextField();
+        text12.setDisable(!cb);
         text12.setTranslateX(enXTexto);
         text12.setTranslateY(n);
         
@@ -124,6 +136,7 @@ public class DisenioFormulario {
         label26.setTranslateX(enX);
         label26.setTranslateY(n+=espacio);
         text26 = new TextField();
+        text26.setDisable(!cb);
         text26.setTranslateX(enXTexto);
         text26.setTranslateY(n);
         
@@ -131,6 +144,7 @@ public class DisenioFormulario {
         label13.setTranslateX(enX);
         label13.setTranslateY(n+=espacio);
         text13 = new TextField();
+        text13.setDisable(!cb);
         text13.setTranslateX(enXTexto);
         text13.setTranslateY(n);
         
@@ -138,6 +152,7 @@ public class DisenioFormulario {
         label14.setTranslateX(enX);
         label14.setTranslateY(n+=espacio);
         text14 = new TextField();
+        text14.setDisable(!cb);
         text14.setTranslateX(enXTexto);
         text14.setTranslateY(n);
         
@@ -145,13 +160,15 @@ public class DisenioFormulario {
         label15.setTranslateX(enX);
         label15.setTranslateY(n+=espacio);
         text15 = new TextField();
+        text15.setDisable(textf);
         text15.setTranslateX(enXTexto);
         text15.setTranslateY(n);
         
-        Label label16 = new Label("Nacionalidad Migrate:");
+        Label label16 = new Label("Pais Nacimiento:");
         label16.setTranslateX(enX2);
-        label16.setTranslateY(n=30);
+        label16.setTranslateY(n=70);
         text16 = new TextField();
+        text16.setDisable(!cb);
         text16.setTranslateX(enXTexto2);
         text16.setTranslateY(n);
         
@@ -159,6 +176,7 @@ public class DisenioFormulario {
         label17.setTranslateX(enX2);
         label17.setTranslateY(n+=espacio);
         text17 = new TextField();
+        text17.setDisable(textf);
         text17.setTranslateX(enXTexto2);
         text17.setTranslateY(n);
         
@@ -166,6 +184,7 @@ public class DisenioFormulario {
         label18.setTranslateX(enX2);
         label18.setTranslateY(n+=espacio);
         text18 = new TextField();
+        text18.setDisable(textf);
         text18.setTranslateX(enXTexto2);
         text18.setTranslateY(n);
         
@@ -173,6 +192,7 @@ public class DisenioFormulario {
         label19.setTranslateX(enX2);
         label19.setTranslateY(n+=espacio);
         text19 = new TextField();
+        text19.setDisable(textf);
         text19.setTranslateX(enXTexto2);
         text19.setTranslateY(n);
         
@@ -180,6 +200,7 @@ public class DisenioFormulario {
         label20.setTranslateX(enX2);
         label20.setTranslateY(n+=espacio);
         text20 = new TextField();
+        text20.setDisable(!cb);
         text20.setTranslateX(enXTexto2);
         text20.setTranslateY(n);
         
@@ -187,6 +208,7 @@ public class DisenioFormulario {
         label21.setTranslateX(enX2);
         label21.setTranslateY(n+=espacio);
         text21 = new TextField();
+        text21.setDisable(textf);
         text21.setTranslateX(enXTexto2);
         text21.setTranslateY(n);
         
@@ -194,6 +216,7 @@ public class DisenioFormulario {
         label22.setTranslateX(enX2);
         label22.setTranslateY(n+=espacio);
         text22 = new TextField();
+        text22.setDisable(textf);
         text22.setTranslateX(enXTexto2);
         text22.setTranslateY(n);
         
@@ -201,6 +224,7 @@ public class DisenioFormulario {
         label23.setTranslateX(enX2);
         label23.setTranslateY(n+=espacio);
         text23 = new TextField();
+        text23.setDisable(!cb);
         text23.setTranslateX(enXTexto2);
         text23.setTranslateY(n);
         
@@ -208,6 +232,7 @@ public class DisenioFormulario {
         label24.setTranslateX(enX2);
         label24.setTranslateY(n+=espacio);
         text24 = new TextField();
+        text24.setDisable(textf);
         text24.setTranslateX(enXTexto2);
         text24.setTranslateY(n);
         
@@ -215,14 +240,28 @@ public class DisenioFormulario {
         label25.setTranslateX(enX2);
         label25.setTranslateY(n+=espacio);
         text25 = new TextField();
+        text25.setDisable(!cb);
         text25.setTranslateX(enXTexto2);
         text25.setTranslateY(n);
         
+        Label label27 = new Label("Buscar por cédula:");
+        label27.setTranslateX(enX);
+        label27.setTranslateY(n=20);
+        text27 = new TextField();
+        text27.setDisable(!textf && cb);
+        text27.setTranslateX(enXTexto);
+        text27.setTranslateY(n);
+        comboBox2 = new ComboBox<RegistroMigrante>();
+        comboBox2.setPromptText("Registros");
+        comboBox2.setTranslateX(enXTexto+200);
+        comboBox2.setTranslateY(n);
+        comboBox2.setDisable(!textf && cb);
         
-        root.getChildren().addAll(label1,label2,label3,label4,label5,label6,calendario,label10,label11,label12,
-                label13,label14,label15,label16,label17,label18,label19,label20,label21,label22,label23,label24,label25,label26,
-                text1,text2,text3,text4,text10,text11,text12,text13,text14,text15,text16,text17,text18,text19,
-                text20,text21,text22,text23,text24,text25,text26,comboBox);
+        
+        root.getChildren().addAll(label27,label1,label3,label4,label2,label5,label6,label10,label11,label12,
+        label13,label14,label15,label16,label17,label18,label19,label20,label21,label22,label23,label24,label25,label26,
+        text27,comboBox2,text1,text3,comboBox,text4,text2,calendario,text10,text11,text12,text26,text13,text14,text15,
+        text16,text17,text18,text19,text20,text21,text22,text23,text24,text25);
     }
 
     public Pane getRoot() {
@@ -415,5 +454,21 @@ public class DisenioFormulario {
 
     public void setComboBox(ComboBox comboBox) {
         this.comboBox = comboBox;
+    }
+
+    public TextField getText27() {
+        return text27;
+    }
+
+    public void setText27(TextField text27) {
+        this.text27 = text27;
+    }
+
+    public ComboBox<RegistroMigrante> getComboBox2() {
+        return comboBox2;
+    }
+
+    public void setComboBox2(ComboBox<RegistroMigrante> comboBox2) {
+        this.comboBox2 = comboBox2;
     }
 }
