@@ -258,6 +258,7 @@ public class RegistroMigrante {
     public boolean equals(Object o){
         if(o == null || !(o instanceof RegistroMigrante))return false;
         RegistroMigrante p = (RegistroMigrante)o;
-        return persona.equals(p.persona) && canton.equals(p.canton);
+        //if()
+        return persona.equals(p.persona) && canton.equals(p.canton) && tip_mov.equals(p.tip_mov) && anio_movi == p.anio_movi && mes_movi.equals(p.mes_movi) && dia_movi == p.dia_movi && motivo_viaje.equals(p.motivo_viaje);
     }
 }

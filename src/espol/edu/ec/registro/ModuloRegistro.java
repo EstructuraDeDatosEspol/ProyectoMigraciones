@@ -66,6 +66,7 @@ public class ModuloRegistro {
         if(!cb){
             disenioFormulario.getText27().setOnKeyPressed((KeyEvent ke) -> {
                 if (ke.getCode().equals(KeyCode.ENTER) || ke.getCode().equals(KeyCode.TAB)){
+                    disenioFormulario.getComboBox().setValue("");
                     llenarRegistro(disenioFormulario.getText27().getText(),disenioFormulario);                    
                 }                
             });
@@ -111,12 +112,16 @@ public class ModuloRegistro {
             if(reg == null)System.out.println("esta vacio");
             else {
                 for(RegistroMigrante i: listRegistroMigrantes){
-                    if(i.equals(reg))i.volverNull();
+                    if(i.equals(reg)){
+                        i.volverNull();
+                        break;
+                    }
                 }
                 System.out.println(listRegistroMigrantes.getFirst());
                 System.out.println(listPersonas.getLast().getList());
                 System.out.println(listCantones.get(39).getList());
                 new ReadWriter().eliminarRegistro(listRegistroMigrantes, "Registros.txt");
+                System.out.println(listRegistroMigrantes);
             }
         });
         boton3.setOnAction(e -> new PantallaOpciones(stage));
@@ -124,7 +129,10 @@ public class ModuloRegistro {
             if(reg == null)System.out.println("esta vacio");
             else {
                 for(RegistroMigrante i: listRegistroMigrantes){
-                    if(i.equals(reg))modificarRegistro(i, disenioFormulario);
+                    if(i.equals(reg)){
+                        modificarRegistro(i, disenioFormulario);
+                        break;
+                    }
                 }
                 System.out.println(listRegistroMigrantes.getFirst());
                 System.out.println(listPersonas.getLast().getList());
@@ -282,6 +290,7 @@ public class ModuloRegistro {
                 int ced = Integer.valueOf(cedula);
                 for(Persona p: listPersonas){
                     if(p.getCedula() == ced){
+                        System.out.println(p.getList());
                         d.getComboBox2().setItems(FXCollections.observableList(p.getList()));
                         d.getComboBox2().setDisable(false);
                         d.getComboBox2().setOnAction(e -> {
@@ -358,7 +367,7 @@ public class ModuloRegistro {
         r.setMotivo_viaje(d.getText15().getText());
         r.setPais_procedencia(d.getText17().getText());
         r.setPais_residencia(d.getText18().getText());
-        r.setLugar_proveniente(d.getText18().getText());
+        r.setLugar_proveniente(d.getText19().getText());
         r.setCont_procedencia(d.getText21().getText());
         r.setCont_residencia(d.getText22().getText());
         r.setSubcont_procedencia(d.getText24().getText());
