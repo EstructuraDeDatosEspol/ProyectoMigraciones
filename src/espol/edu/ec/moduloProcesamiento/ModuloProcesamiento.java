@@ -1,21 +1,16 @@
 package espol.edu.ec.moduloProcesamiento;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
-
 import espol.edu.ec.tda.Stack;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 /**
  * Gestionador de la Interfaz Gráfica.
@@ -61,7 +56,8 @@ public class ModuloProcesamiento {
 
     @FXML
     void actualizarTablaPorRegion(){
-
+        
+        datos= new ProcesadorDeRegistro();
         String tipo = selectorTipo.getValue().toString();
         String region= selectorRegion.getValue().toString();
 
@@ -89,7 +85,7 @@ public class ModuloProcesamiento {
     void agregarDatosATabla(Stack<Map.Entry<String,Integer>> pila){
 
         if(!this.tablaPorRegion.getItems().isEmpty()) this.tablaPorRegion.getItems().clear();
-        datos= new ProcesadorDeRegistro();
+       
 
         ObservableList<Entry> list = FXCollections.observableArrayList();
 

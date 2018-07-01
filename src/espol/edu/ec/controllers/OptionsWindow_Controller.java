@@ -4,8 +4,6 @@ import espol.edu.ec.pane.PaneModulo1;
 import espol.edu.ec.registro.ModuloRegistro;
 import java.io.IOException;
 
-import espol.edu.ec.moduloProcesamiento.ModuloProcesamiento;
-import espol.edu.ec.moduloProcesamiento.ProcesadorDeRegistro;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

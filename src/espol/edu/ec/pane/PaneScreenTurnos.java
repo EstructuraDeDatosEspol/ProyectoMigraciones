@@ -5,7 +5,7 @@
  */
 package espol.edu.ec.pane;
 
-import espol.edu.ec.simplylinkedlistcircular.SimplyLinkedListCircular;
+import espol.edu.ec.tda.SimplyLinkedListCircular;
 import espol.edu.ec.tda.Const;
 import espol.edu.ec.tda.Estado;
 import espol.edu.ec.tda.Turno;
