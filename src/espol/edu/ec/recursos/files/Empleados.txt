@@ -1,5 +1,5 @@
+0923099239,Alexandra,Carpio,mujer,25
+0913482901,Carlos,Fernandez,hombre,28
+0923484834,Antonio,Caicedo,hombre,30
 0952770386,Kenny,Camba,hombre,20
 0923482394,María,Cardenas,mujer,35
-0913482901,Carlos,Fernandez,hombre,28
-0923099239,Alexandra,Carpio,mujer,25
-0923484834,Antonio,Caicedo,hombre,30

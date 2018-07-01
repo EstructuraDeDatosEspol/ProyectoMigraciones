@@ -1,5 +1,6 @@
 package espol.edu.ec.main;
 
+import espol.edu.ec.pane.PaneModulo1;
 import java.io.IOException;
 
 import espol.edu.ec.pane.PaneScreenTurnos;
@@ -38,6 +39,7 @@ public class Main extends Application {
     
     @Override
     public void stop () throws Exception {
+        PaneModulo1.updateFiles();
         SCREEN_TURNOS.endRun();
     }
     

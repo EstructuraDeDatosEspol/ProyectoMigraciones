@@ -17,6 +17,7 @@ public class OptionsWindow_Controller {
     private Parent rootProcesamiento;
     private Stage addTurnStage, adminRegStage, stageProcesamiento;
     private PantallaOpciones pantallaOpciones;
+    private final static PaneModulo1 MODULO_1 = new PaneModulo1();
 
     @FXML
     void handle_addTurn() throws IOException {
@@ -25,7 +26,7 @@ public class OptionsWindow_Controller {
         addTurnStage.setResizable(false);
         addTurnStage.initModality(Modality.APPLICATION_MODAL);
         addTurnStage.initStyle(StageStyle.UTILITY); 
-        addTurnStage.setScene(new Scene(new PaneModulo1().getRoot()));
+        addTurnStage.setScene(new Scene(MODULO_1.getRoot()));
         addTurnStage.show();
     }
 

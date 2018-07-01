@@ -6,16 +6,26 @@
 package espol.edu.ec.pane;
 
 import espol.edu.ec.main.Main;
+import espol.edu.ec.registro.Persona;
+import espol.edu.ec.registro.ReadWriter;
 import espol.edu.ec.tda.Const;
 import espol.edu.ec.tda.Puesto;
 import espol.edu.ec.tda.Turno;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -37,18 +47,21 @@ import javafx.scene.text.Text;
  */
 public class PaneModulo1 {
     
-    private final static Map<Puesto, LinkedList<Turno>> ATENCION = loadMap();
+    public final static Map<String, Persona> EMPLEADOS = ReadWriter.loadEmpleados();
+    public final static List<Puesto> PUESTOS = Puesto.cargarPuestos(EMPLEADOS);
+    private final static Map<Puesto, LinkedList<Turno>> ATENCION = loadMap(PUESTOS);
     private final BorderPane root;
     private final static PaneScreenTurnos SCREEN = Main.getRootTurnShower();
     private final static PaneTurnoGenerador SECCION_TURNO = new PaneTurnoGenerador(ATENCION, SCREEN);
     private final static PaneAtenderTurno SECCION_ATENDER = new PaneAtenderTurno(ATENCION, SCREEN, SECCION_TURNO);
-        private final static PaneAdminPuestos SECCION_PUESTOS = new PaneAdminPuestos(ATENCION, SECCION_ATENDER);
+    private final static PaneAdminPuestos SECCION_PUESTOS = new PaneAdminPuestos(ATENCION);
+    private final static PaneAdminEmpleados SECCION_EMPLEADOS = new PaneAdminEmpleados(ATENCION); 
+    
     public PaneModulo1() {
         root = new BorderPane();
         root.setCenter(SECCION_TURNO.getPane()); 
-        root.setMinSize(Const.MAX_WIDTH/3, Const.MAX_HEIGHT/2.7);
+        root.setMinSize(Const.MAX_WIDTH/3, Const.MAX_HEIGHT/2.4);
         leftPane();
-        loadMap();
     }
     
     private void leftPane() {
@@ -72,11 +85,14 @@ public class PaneModulo1 {
         });
         
         atender.setOnMouseClicked(e-> {
+            SECCION_ATENDER.updatePuestos();
             root.setCenter(SECCION_ATENDER.getPane()); 
         });
         
         puesto.setOnMouseClicked(e -> {
-            root.setCenter(SECCION_PUESTOS.getPane()); 
+            TabPane pane = new TabPane();
+            pane.getTabs().addAll(SECCION_PUESTOS.getTab(), SECCION_EMPLEADOS.getTab());
+            root.setCenter(pane); 
         }); 
     }
     
@@ -110,11 +126,42 @@ public class PaneModulo1 {
         return root;
     }
     
-    private static Map<Puesto, LinkedList<Turno>> loadMap() {
+    private static Map<Puesto, LinkedList<Turno>> loadMap(List<Puesto> puestos) {
         Map<Puesto, LinkedList<Turno>> map = new HashMap();
-        List<Puesto> puestos = Puesto.cargarPuestos();
         for(Puesto p: puestos) 
             map.put(p, new LinkedList<>());
         return map;
+    }
+    
+    public static void updateFiles() {
+        String emple = new File("").getAbsolutePath();
+        emple = Paths.get(emple, "src", "espol", "edu", "ec", "recursos", "files", "empleados.txt").toString();
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(emple))){
+            for(Map.Entry<String, Persona> p: EMPLEADOS.entrySet()){
+                Persona per = p.getValue();
+                bw.write(p.getKey()+","+per.getNombre()+","+per.getApellido()+","+per.getSexo()+","+per.getEdad());
+                bw.newLine();
+            }
+        }catch(IOException ex){
+            Logger.getLogger(PaneModulo1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        String puesto = new File("").getAbsolutePath();
+        puesto = Paths.get(puesto, "src", "espol", "edu", "ec", "recursos", "files", "puestos.txt").toString();
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(puesto))){
+            for(Puesto p: PUESTOS){
+                if(p.getEmpleado() == null)
+                    bw.write(p.getPuesto());
+                else{
+                    String cedula = p.getEmpleado().getCedula()+ "";
+                    if(cedula.length() < 10)
+                        cedula = "0"+cedula;
+                    bw.write(p.getPuesto()+","+cedula);
+                    bw.newLine();
+                }
+            }
+        }catch(IOException ex){
+            Logger.getLogger(PaneModulo1.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -6,7 +6,6 @@
 package espol.edu.ec.tda;
 
 import espol.edu.ec.registro.Persona;
-import espol.edu.ec.registro.ReadWriter;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -65,11 +64,16 @@ public class Puesto {
     
     @Override
     public int hashCode() {
-        return Integer.parseInt(puesto);
+        int hash;
+        try{
+            hash = Integer.parseInt(puesto);
+        }catch(NumberFormatException ex){
+            hash = puesto.hashCode();
+        }
+        return hash;
     }
     
-    public static List<Puesto> cargarPuestos() {
-        Map<String, Persona> empleados = ReadWriter.loadEmpleados();
+    public static List<Puesto> cargarPuestos(Map<String, Persona> empleados) {
         List<Puesto> puestos = new LinkedList<>();
         String file = new File("").getAbsolutePath();
         file = Paths.get(file, "src", "espol", "edu", "ec", "recursos", "files", "puestos.txt").toString();
@@ -78,7 +82,10 @@ public class Puesto {
             String line;
             while((line=br.readLine()) != null){
                 String data[] = line.split(",");
-                puestos.add(new Puesto(data[0], empleados.get(data[1]))); 
+                if(data.length == 1)
+                    puestos.add(new Puesto(data[0]));
+                else
+                    puestos.add(new Puesto(data[0], empleados.get(data[1]))); 
             }
         }catch(IOException ex){
             Logger.getLogger(Puesto.class.getName()).log(Level.SEVERE, null, ex);
