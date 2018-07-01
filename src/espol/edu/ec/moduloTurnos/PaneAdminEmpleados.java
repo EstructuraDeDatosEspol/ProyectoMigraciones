@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package espol.edu.ec.pane;
+package espol.edu.ec.moduloTurnos;
 
-import espol.edu.ec.registro.Persona;
+import espol.edu.ec.tda.entidades.Persona;
 import espol.edu.ec.tda.Puesto;
 import espol.edu.ec.tda.Turno;
 import java.util.LinkedList;
@@ -37,7 +37,7 @@ public class PaneAdminEmpleados extends PaneAdmin{
     public PaneAdminEmpleados(Map<Puesto, LinkedList<Turno>> atencion) {
         super(atencion, "Empleados");
         Image image = new Image(
-                PaneAdminEmpleados.class.getResource("/espol/edu/ec/assets/search.png").toExternalForm(), 20, 20, true, true);
+                PaneAdminEmpleados.class.getResource("/espol/edu/ec/recursos/assets/search.png").toExternalForm(), 20, 20, true, true);
         search = new Button("", new ImageView(image));
         sexBox = new TextField();
         sexBox.setPrefColumnCount(7);

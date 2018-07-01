@@ -1,4 +1,4 @@
-package espol.edu.ec.registro;
+package espol.edu.ec.moduloDeRegistro;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;

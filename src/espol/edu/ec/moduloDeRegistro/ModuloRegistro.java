@@ -3,17 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package espol.edu.ec.registro;
+package espol.edu.ec.moduloDeRegistro;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+
+import espol.edu.ec.tda.entidades.Canton;
+import espol.edu.ec.tda.entidades.Continente;
+import espol.edu.ec.tda.entidades.Pais;
+import espol.edu.ec.tda.entidades.Persona;
+import espol.edu.ec.tda.entidades.Provincia;
 import javafx.collections.FXCollections;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;

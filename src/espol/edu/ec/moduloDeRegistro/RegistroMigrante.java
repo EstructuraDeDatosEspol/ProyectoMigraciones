@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package espol.edu.ec.registro;
+package espol.edu.ec.moduloDeRegistro;
+
+import espol.edu.ec.tda.entidades.Canton;
+import espol.edu.ec.tda.entidades.Persona;
 
 /**
  *

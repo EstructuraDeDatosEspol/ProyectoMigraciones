@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package espol.edu.ec.pane;
+package espol.edu.ec.moduloTurnos;
 
 import espol.edu.ec.tda.SimplyLinkedListCircular;
 import espol.edu.ec.tda.Const;
@@ -75,7 +75,7 @@ public class PaneScreenTurnos {
         HBox hbox = new HBox();
         hbox.setPadding(new Insets(Const.MAX_HEIGHT/20, Const.MAX_WIDTH/30, Const.MAX_HEIGHT/30 , Const.MAX_WIDTH/30)); 
         LocalTime reloj = LocalTime.now();
-        String fileImage = PaneScreenTurnos.class.getResource("/espol/edu/ec/assets/deb.png").toExternalForm();  
+        String fileImage = PaneScreenTurnos.class.getResource("/espol/edu/ec/recursos/assets/deb.png").toExternalForm();
         ImageView deb = new ImageView(new Image(fileImage, Const.MAX_WIDTH/10, Const.MAX_HEIGHT/10, true, true));
         Text text = new Text();
         text.setText(reloj.format(DateTimeFormatter.ofPattern("HH:mm")));

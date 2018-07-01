@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package espol.edu.ec.registro;
+package espol.edu.ec.tda.entidades;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.HashMap;
+
+import espol.edu.ec.moduloDeRegistro.SubContinente;
 
 /**
  *

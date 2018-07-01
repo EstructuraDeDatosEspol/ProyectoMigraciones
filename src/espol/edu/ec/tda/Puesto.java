@@ -5,7 +5,7 @@
  */
 package espol.edu.ec.tda;
 
-import espol.edu.ec.registro.Persona;
+import espol.edu.ec.tda.entidades.Persona;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;

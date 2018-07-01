@@ -1,9 +1,9 @@
 package espol.edu.ec.main;
 
-import espol.edu.ec.pane.PaneModulo1;
+import espol.edu.ec.moduloTurnos.PaneModulo1;
 import java.io.IOException;
 
-import espol.edu.ec.pane.PaneScreenTurnos;
+import espol.edu.ec.moduloTurnos.PaneScreenTurnos;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -27,7 +27,7 @@ public class Main extends Application {
     @Override
     public void start(Stage optionsWindow) throws Exception{
 
-        rootOptions = FXMLLoader.load(getClass().getResource("../views/OptionsWindow.fxml"));
+        rootOptions = FXMLLoader.load(getClass().getResource("OptionsWindow.fxml"));
 
         optionsWindow.setTitle("Sistema de Migraciones.");
         optionsWindow.setScene(new Scene(rootOptions));

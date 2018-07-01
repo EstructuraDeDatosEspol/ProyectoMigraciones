@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package espol.edu.ec.pane;
+package espol.edu.ec.moduloTurnos;
 
 import espol.edu.ec.tda.Const;
 import espol.edu.ec.tda.Turno;

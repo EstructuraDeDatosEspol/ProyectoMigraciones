@@ -1,7 +1,7 @@
-package espol.edu.ec.controllers;
+package espol.edu.ec.main;
 
-import espol.edu.ec.pane.PaneModulo1;
-import espol.edu.ec.registro.PantallaOpciones;
+import espol.edu.ec.moduloTurnos.PaneModulo1;
+import espol.edu.ec.moduloDeRegistro.PantallaOpciones;
 import java.io.IOException;
 
 import javafx.fxml.FXML;

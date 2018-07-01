@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package espol.edu.ec.pane;
+package espol.edu.ec.moduloTurnos;
 
-import espol.edu.ec.registro.Persona;
+import espol.edu.ec.tda.entidades.Persona;
 import espol.edu.ec.tda.Puesto;
 import espol.edu.ec.tda.Turno;
 import java.util.LinkedList;

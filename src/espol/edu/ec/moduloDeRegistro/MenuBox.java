@@ -1,4 +1,4 @@
-package espol.edu.ec.registro;
+package espol.edu.ec.moduloDeRegistro;
 
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;

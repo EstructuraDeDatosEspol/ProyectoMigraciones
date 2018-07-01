@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package espol.edu.ec.pane;
+package espol.edu.ec.moduloTurnos;
 
 import espol.edu.ec.main.Main;
-import espol.edu.ec.registro.Persona;
-import espol.edu.ec.registro.ReadWriter;
+import espol.edu.ec.tda.entidades.Persona;
+import espol.edu.ec.moduloDeRegistro.ReadWriter;
 import espol.edu.ec.tda.Const;
 import espol.edu.ec.tda.Puesto;
 import espol.edu.ec.tda.Turno;
@@ -69,11 +69,11 @@ public class PaneModulo1 {
         menu.setBackground(new Background(new BackgroundFill(Color.SLATEGREY, CornerRadii.EMPTY, Insets.EMPTY))); 
         menu.setSpacing(2); 
         StackPane nuevo = opcion("Generar", new ImageView(new Image(
-                PaneModulo1.class.getResourceAsStream("/espol/edu/ec/assets/crear.png"), 30, 30, false, false)));
+                PaneModulo1.class.getResourceAsStream("/espol/edu/ec/recursos/assets/crear.png"), 30, 30, false, false)));
         StackPane atender = opcion("Atender", new ImageView(new Image(
-                PaneModulo1.class.getResourceAsStream("/espol/edu/ec/assets/atender.png"), 30, 30, false, false)));
+                PaneModulo1.class.getResourceAsStream("/espol/edu/ec/recursos/assets/atender.png"), 30, 30, false, false)));
         StackPane puesto = opcion("Puestos", new ImageView(new Image(
-                PaneModulo1.class.getResourceAsStream("/espol/edu/ec/assets/puestos.png"), 30, 30, false, false)));
+                PaneModulo1.class.getResourceAsStream("/espol/edu/ec/recursos/assets/puestos.png"), 30, 30, false, false)));
         menu.getChildren().addAll(nuevo, atender, puesto);
         
         Tooltip.install(nuevo, new Tooltip("Generar nuevo turno"));

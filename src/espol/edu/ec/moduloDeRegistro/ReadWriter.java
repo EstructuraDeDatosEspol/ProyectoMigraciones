@@ -1,6 +1,10 @@
-package espol.edu.ec.registro;
+package espol.edu.ec.moduloDeRegistro;
 
 import espol.edu.ec.tda.Puesto;
+import espol.edu.ec.tda.entidades.Canton;
+import espol.edu.ec.tda.entidades.Continente;
+import espol.edu.ec.tda.entidades.Persona;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -8,8 +12,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;

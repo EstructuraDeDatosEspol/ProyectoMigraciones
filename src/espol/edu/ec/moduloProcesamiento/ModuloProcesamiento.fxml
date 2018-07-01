@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchor" prefHeight="393.0" prefWidth="535.0" stylesheets="@../assets/TableViewStyle.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.moduloProcesamiento.ModuloProcesamiento">
+<AnchorPane fx:id="anchor" prefHeight="393.0" prefWidth="535.0" stylesheets="@../recursos/assets/TableViewStyle.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.moduloProcesamiento.ModuloProcesamiento">
    <children>
       <SplitPane dividerPositions="0.528046421663443" layoutX="8.0" layoutY="7.0" prefHeight="379.0" prefWidth="519.0">
         <items>

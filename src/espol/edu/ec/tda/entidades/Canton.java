@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package espol.edu.ec.registro;
+package espol.edu.ec.tda.entidades;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import espol.edu.ec.moduloDeRegistro.RegistroMigrante;
 
 /**
  *
