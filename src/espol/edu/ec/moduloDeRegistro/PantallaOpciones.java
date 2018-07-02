@@ -5,6 +5,7 @@
  */
 package espol.edu.ec.moduloDeRegistro;
 
+import espol.edu.ec.tda.Const;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -18,7 +19,7 @@ public class PantallaOpciones {
     private ModuloRegistro moduloRegistro;
 
     public PantallaOpciones(Stage stage) {
-        root = new Pane();
+        root = new Pane();    
         
         MenuBox menuBox = new MenuBox(
                 new MenuItem("Registrar"),
@@ -26,7 +27,7 @@ public class PantallaOpciones {
                 new MenuItem("Eliminar"));
         menuBox.setTranslateX(550);
         menuBox.setTranslateY(300);
-         
+        
         root.getChildren().addAll(menuBox);
         
         MenuItem[] menu = menuBox.getMenu();
@@ -46,7 +47,7 @@ public class PantallaOpciones {
             moduloRegistro =new ModuloRegistro(root,stage,true,true,false,true,false);
         });
         
-        stage.setScene(new Scene(root,2480,700));
+        stage.setScene(new Scene(root,Const.MAX_WIDTH,Const.MAX_HEIGHT));
     }
     
     public void volver(Pane root){

@@ -5,10 +5,9 @@
  */
 package espol.edu.ec.tda.entidades;
 
+import espol.edu.ec.moduloDeRegistro.RegistroMigrante;
 import java.util.LinkedList;
 import java.util.List;
-
-import espol.edu.ec.moduloDeRegistro.RegistroMigrante;
 
 /**
  *

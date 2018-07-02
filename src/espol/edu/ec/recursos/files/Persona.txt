@@ -2,3 +2,4 @@
 0912398574,Juan,Perez,hombre,1990,contador,28,Ecuatoriano,America,Sudamerica
 0912345678,Karla,Mendoza,mujer,1995,ingeniera,23,Español,Europa,..
 0987654321,Ney,Canales,otro,1998,estudiante,19,Ecuatoriano,America,Sudamerica
+0955533342,Valerya,Garcia,Mujer,1997,Estudiante,21,Ecuador,América,SudAmérica

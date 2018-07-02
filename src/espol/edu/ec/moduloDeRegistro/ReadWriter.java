@@ -4,7 +4,6 @@ import espol.edu.ec.tda.Puesto;
 import espol.edu.ec.tda.entidades.Canton;
 import espol.edu.ec.tda.entidades.Continente;
 import espol.edu.ec.tda.entidades.Persona;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -20,14 +19,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 //Declaracion de la clase
- 
-/**
- * Clase ReadWriter 
- * @author Araujo Steven
- * @author Banchon Melanie
- * @author Guerrero Darly
- * @version 13/01/18
- */
 public class ReadWriter{
     private final File f = new File("");
     private final String dire = f.getAbsolutePath();
@@ -87,21 +78,10 @@ public class ReadWriter{
         }
     }
     
-    public void agregarRegistro(List<String> linea, String nombre){
+    public void agregarRegistro(RegistroMigrante r, String nombre){
         String direccion = dire.substring(0,indiceDeProyecto+11)+ubicacion+nombre;
 	try (BufferedWriter bw = new BufferedWriter(new FileWriter(direccion,true))){
-            int a = linea.size();
-            int n=0;
-            
-            StringBuilder bld = new StringBuilder();
-            for (String palabras : linea) {
-                n++;
-                if(n<a){
-                    bld.append(palabras);
-                    bld.append(";");
-                }else bld.append(palabras);
-            }
-            bw.write(bld.toString());
+            bw.write(r.texto());
             bw.newLine();
         } catch (IOException ex) {
             ex.getStackTrace();
@@ -126,21 +106,10 @@ public class ReadWriter{
         return listLineas;
     }
     
-    public void agregarPersonas(List<String> linea, String nombre){
+    public void agregarPersonas(Persona p, String nombre){
         String direccion = dire.substring(0,indiceDeProyecto+11)+ubicacion+nombre;
 	try (BufferedWriter bw = new BufferedWriter(new FileWriter(direccion,true))){
-            int a = linea.size();
-            int n=0;
-            
-            StringBuilder bld = new StringBuilder();
-            for (String palabras : linea) {
-                n++;
-                if(n<a){
-                    bld.append(palabras);
-                    bld.append(",");
-                }else bld.append(palabras);
-            }
-            bw.write(bld.toString());
+            bw.write(p.texto());
             bw.newLine();
         } catch (IOException ex) {
             ex.getStackTrace();

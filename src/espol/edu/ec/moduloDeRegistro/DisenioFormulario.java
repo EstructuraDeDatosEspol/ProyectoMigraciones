@@ -5,10 +5,9 @@
  */
 package espol.edu.ec.moduloDeRegistro;
 
+import espol.edu.ec.tda.entidades.Canton;
 import java.time.LocalDate;
 import java.util.LinkedList;
-
-import espol.edu.ec.tda.entidades.Canton;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -48,7 +47,7 @@ public class DisenioFormulario {
     private TextField text27;
     private ComboBox<RegistroMigrante> comboBox2;
 
-    public DisenioFormulario(Pane root, LinkedList<Canton> listCantones, boolean textf, boolean cb) {
+    public DisenioFormulario(Pane root,LinkedList<Canton> listCantones, boolean textf, boolean cb) {
         this.root = root;
         root.getStylesheets().add(DisenioFormulario.class.getResource("/espol/edu/ec/recursos/assets/estilo.css").toExternalForm());
         int n = 70;

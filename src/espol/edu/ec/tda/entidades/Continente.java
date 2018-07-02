@@ -10,8 +10,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.HashMap;
 
-import espol.edu.ec.moduloDeRegistro.SubContinente;
-
 /**
  *
  * @author SSAM

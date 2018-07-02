@@ -5,16 +5,15 @@
  */
 package espol.edu.ec.moduloDeRegistro;
 
-import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-
 import espol.edu.ec.tda.entidades.Canton;
 import espol.edu.ec.tda.entidades.Continente;
 import espol.edu.ec.tda.entidades.Pais;
 import espol.edu.ec.tda.entidades.Persona;
 import espol.edu.ec.tda.entidades.Provincia;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -35,6 +34,8 @@ public class ModuloRegistro {
     private LinkedList<Canton> listCantones;
     private String canton;
     private RegistroMigrante reg;
+    private RegistroMigrante registroNuevo;
+    private Persona personaElegida;
 
     public ModuloRegistro(Pane root, Stage stage, boolean guar, boolean mod, boolean eli, boolean textf, boolean cb) {
         this.root = root;
@@ -44,11 +45,6 @@ public class ModuloRegistro {
         listRegistroMigrantes = new ReadWriter().cargarRegistro("Registros.txt");
         listCantones = referenciarCantones(listContinentes);
         enlazarListas();
-        System.out.println(listRegistroMigrantes.getFirst());
-        listCantones.get(39).getList().get(0).setAnio_movi(1);
-        System.out.println(listRegistroMigrantes.getFirst());
-        System.out.println(listPersonas.getLast().getList());
-        System.out.println(listCantones.get(39).getList());
         
         Button boton1 = new Button("Guardar");
         boton1.setDisable(guar);
@@ -91,28 +87,45 @@ public class ModuloRegistro {
                 llenarCampoProv(disenioFormulario.getComboBox().getValue().toString(), disenioFormulario);
             }
         });
+        disenioFormulario.getText13().setOnKeyPressed((KeyEvent ke) -> {
+            if (ke.getCode().equals(KeyCode.ENTER)  || ke.getCode().equals(KeyCode.TAB)){
+                try{
+                    disenioFormulario.getText20().setText(String.valueOf(2018-Integer.parseInt(disenioFormulario.getText13().getText())));
+                }catch(NumberFormatException n){
+                    disenioFormulario.getText13().setText("");
+                    new MensajesAlerta().cedulaEnteroError();
+                }                
+            }
+        });
+        
+        //paises
         disenioFormulario.getText16().setOnKeyPressed((KeyEvent ke) -> {
             if (ke.getCode().equals(KeyCode.ENTER)  || ke.getCode().equals(KeyCode.TAB)){
-                llenarCampoContinente(disenioFormulario.getText16().getText(), disenioFormulario.getText23(), disenioFormulario.getText25());
+                llenarCampoContinente(disenioFormulario.getText16().getText(), disenioFormulario.getText23(), disenioFormulario.getText25(),disenioFormulario.getText16());
             }
         });
         disenioFormulario.getText17().setOnKeyPressed((KeyEvent ke) -> {
             if (ke.getCode().equals(KeyCode.ENTER) || ke.getCode().equals(KeyCode.TAB)){
-                llenarCampoContinente(disenioFormulario.getText17().getText(), disenioFormulario.getText21(), disenioFormulario.getText24());
+                llenarCampoContinente(disenioFormulario.getText17().getText(), disenioFormulario.getText21(), disenioFormulario.getText24(),disenioFormulario.getText17());
             }
         });
         disenioFormulario.getText18().setOnKeyPressed((KeyEvent ke) -> {
             if (ke.getCode().equals(KeyCode.ENTER) || ke.getCode().equals(KeyCode.TAB)){
-                llenarCampoContinente(disenioFormulario.getText18().getText(), disenioFormulario.getText22(), null);
+                llenarCampoContinente(disenioFormulario.getText18().getText(), disenioFormulario.getText22(), null,disenioFormulario.getText18());
             }
         });
         
         boton1.setOnAction(e -> {
-            if(verificarVacio(disenioFormulario))System.out.println("esta vacio");
-            else System.out.println("se elimino");
+            if(verificarVacio(disenioFormulario))new MensajesAlerta().cuadrosIncompletos();
+            else{
+                new ReadWriter().agregarRegistro(registroNuevo, "Registros.txt");
+                if(personaElegida==null)new ReadWriter().agregarPersonas(registroNuevo.getPersona(), "Persona.txt");
+                new MensajesAlerta().guardadoExitosamente();
+                new PantallaOpciones(stage);
+            }
         });
         boton2.setOnAction(e -> {
-            if(reg == null)System.out.println("esta vacio");
+            if(reg == null)new MensajesAlerta().cuadrosIncompletos();
             else {
                 for(RegistroMigrante i: listRegistroMigrantes){
                     if(i.equals(reg)){
@@ -120,16 +133,14 @@ public class ModuloRegistro {
                         break;
                     }
                 }
-                System.out.println(listRegistroMigrantes.getFirst());
-                System.out.println(listPersonas.getLast().getList());
-                System.out.println(listCantones.get(39).getList());
                 new ReadWriter().eliminarRegistro(listRegistroMigrantes, "Registros.txt");
-                System.out.println(listRegistroMigrantes);
+                new MensajesAlerta().eliminadoExitosamente();
+                new PantallaOpciones(stage);
             }
         });
         boton3.setOnAction(e -> new PantallaOpciones(stage));
         boton4.setOnAction(e -> {
-            if(reg == null)System.out.println("esta vacio");
+            if(reg == null)new MensajesAlerta().cuadrosIncompletos();
             else {
                 for(RegistroMigrante i: listRegistroMigrantes){
                     if(i.equals(reg)){
@@ -137,10 +148,9 @@ public class ModuloRegistro {
                         break;
                     }
                 }
-                System.out.println(listRegistroMigrantes.getFirst());
-                System.out.println(listPersonas.getLast().getList());
-                System.out.println(listCantones.get(39).getList());
                 new ReadWriter().eliminarRegistro(listRegistroMigrantes, "Registros.txt");
+                new MensajesAlerta().sobreEscritoExitosamente();
+                new PantallaOpciones(stage);
             }
         });
         
@@ -232,12 +242,13 @@ public class ModuloRegistro {
                         d.getText23().setText(p.getContinenteNacimiento());
                         d.getText25().setText(p.getSubcontnacionalidad());
                         d.getText15().requestFocus();
+                        personaElegida = p;
                     }
                 }
             }
         }catch(NumberFormatException n){
             d.getText10().setText("");
-            System.out.println("Solo numero");
+            new MensajesAlerta().cedulaEnteroError();
         }
     }
     
@@ -255,11 +266,13 @@ public class ModuloRegistro {
         }
     }
     
-    public void llenarCampoContinente(String pais, TextField tf, TextField tf2){
+    public void llenarCampoContinente(String pais, TextField tf, TextField tf2, TextField origen){
         if(pais.length()>0){
+            pais = Character.toUpperCase(pais.charAt(0)) + pais.substring(1);
             for(Map.Entry<Integer, Continente> e: listContinentes.entrySet()){
                 for(Map.Entry<Integer, Pais> p: e.getValue().getMapaPaises().entrySet()){
                     if(pais.equals(p.getValue().getNombre())){
+                        origen.setText(pais);
                         tf.setText(e.getValue().getNombre());
                         if(tf2!=null)tf2.setText(e.getValue().getMapaSub().get(p.getValue().getCodSubContinente()).getNombre());
                     }
@@ -269,13 +282,36 @@ public class ModuloRegistro {
     }
     
     public boolean verificarVacio(DisenioFormulario d){
-        LinkedList<String> lista = new LinkedList<>();
-        if(d.getText1().getText().length()!=0)lista.addLast(d.getText1().getText());
-        if(d.getText2().getText().length()!=0)lista.addLast(d.getText2().getText());
-        if(d.getText3().getText().length()!=0)lista.addLast(d.getText3().getText());
-        if(d.getComboBox().getValue().toString().length()!=0)lista.addLast(d.getComboBox().getValue().toString());
-        if(d.getText4().getText().length()!=0)lista.addLast(d.getText4().getText());
-        return d.getText4().getText().length()==0 || d.getCalendario().getValue().toString().length() == 0 ||
+        registroNuevo = new RegistroMigrante();
+        registroNuevo.setTip_mov(d.getText1().getText());
+        registroNuevo.setVia_transporte(d.getText3().getText());
+        registroNuevo.setCanton(new Canton(d.getComboBox().getValue().toString()));
+        registroNuevo.setProvincia_movi(d.getText4().getText());
+        registroNuevo.setTipo_nacionalidad(d.getText2().getText());
+        registroNuevo.setDia_movi(d.getCalendario().getValue().getDayOfMonth());
+        registroNuevo.setMes_movi(mesEspaniol(d.getCalendario().getValue().getMonth().toString()));
+        registroNuevo.setAnio_movi(d.getCalendario().getValue().getYear());
+        if(personaElegida != null)registroNuevo.setPersona(personaElegida);
+        else{
+            String cedula = d.getText10().getText();
+            if(cedula.length()==9){
+                StringBuilder sb = new StringBuilder();
+                sb.append("0");
+                sb.append(cedula);
+                cedula = sb.toString();
+            }
+            registroNuevo.setPersona(new Persona(Integer.parseInt(d.getText10().getText()),d.getText11().getText(),d.getText12().getText(),d.getText26().getText(),Integer.parseInt(d.getText13().getText()),d.getText14().getText(),Integer.parseInt(d.getText20().getText()),d.getText16().getText(),d.getText23().getText(),d.getText25().getText()));
+        }
+        registroNuevo.setMotivo_viaje(d.getText15().getText());
+        registroNuevo.setPais_procedencia(d.getText17().getText());
+        registroNuevo.setPais_residencia(d.getText18().getText());
+        registroNuevo.setLugar_proveniente(d.getText19().getText());
+        registroNuevo.setCont_procedencia(d.getText21().getText());
+        registroNuevo.setCont_residencia(d.getText22().getText());
+        registroNuevo.setSubcont_procedencia(d.getText24().getText());
+        
+        return d.getText3().getText().length()==0 || d.getText4().getText().length()==0 || 
+            d.getCalendario().getValue().toString().length() == 0 ||
             d.getText10().getText().length()==0 || d.getText11().getText().length()==0 ||
             d.getText12().getText().length()==0 || d.getText26().getText().length()==0 ||
             d.getText13().getText().length()==0 || d.getText14().getText().length()==0 ||
@@ -284,7 +320,7 @@ public class ModuloRegistro {
             d.getText19().getText().length()==0 || d.getText20().getText().length()==0 ||
             d.getText21().getText().length()==0 || d.getText22().getText().length()==0 ||
             d.getText23().getText().length()==0 || d.getText24().getText().length()==0 ||
-            d.getText25().getText().length()==0;
+            d.getText25().getText().length()==0 || d.getText2().getText().length()==0;
     }
     
     public void llenarRegistro(String cedula, DisenioFormulario d){
@@ -293,20 +329,15 @@ public class ModuloRegistro {
                 int ced = Integer.valueOf(cedula);
                 for(Persona p: listPersonas){
                     if(p.getCedula() == ced){
-                        System.out.println(p.getList());
                         d.getComboBox2().setItems(FXCollections.observableList(p.getList()));
                         d.getComboBox2().setDisable(false);
                         d.getComboBox2().setOnAction(e -> {
                             d.getText10().setText(cedula);
-                            System.out.println("nullpoin");
                             d.getComboBox().setValue(d.getComboBox2().getValue().getCanton().getNombre());
-                            System.out.println("exception");
                             llenarCamposPersonas(cedula,d);
                             llenarCampoProv(d.getComboBox2().getValue().getCanton().getNombre(),d);
-                            d.getText17().setText(d.getComboBox2().getValue().getPais_procedencia());
-                            llenarCampoContinente(d.getComboBox2().getValue().getPais_procedencia(),d.getText21(),d.getText24());
-                            d.getText18().setText(d.getComboBox2().getValue().getPais_residencia());
-                            llenarCampoContinente(d.getComboBox2().getValue().getPais_residencia(),d.getText22(),null);
+                            llenarCampoContinente(d.getComboBox2().getValue().getPais_procedencia(),d.getText21(),d.getText24(),d.getText17());
+                            llenarCampoContinente(d.getComboBox2().getValue().getPais_residencia(),d.getText22(),null,d.getText18());
                             d.getText1().setText(d.getComboBox2().getValue().getTip_mov());
                             d.getText3().setText(d.getComboBox2().getValue().getVia_transporte());
                             d.getText15().setText(d.getComboBox2().getValue().getMotivo_viaje());
@@ -319,7 +350,7 @@ public class ModuloRegistro {
             }
         }catch(NumberFormatException n){
             d.getText10().setText("");
-            System.out.println("Solo numero");
+            new MensajesAlerta().cedulaEnteroError();
         }
     }
     
@@ -366,7 +397,6 @@ public class ModuloRegistro {
         r.setDia_movi(d.getCalendario().getValue().getDayOfMonth());
         r.setMes_movi(mesEspaniol(d.getCalendario().getValue().getMonth().toString()));
         r.setAnio_movi(d.getCalendario().getValue().getYear());
-        //r.setPersona(new Persona(Integer.parseInt(d.getText10().getText()),d.getText11().getText(),d.getText12().getText(),d.getText26().getText(),Integer.parseInt(d.getText13().getText()),d.getText14().getText(),Integer.parseInt(d.getText20().getText()),d.getText16().getText(),d.getText23().getText(),d.getText25().getText()));
         r.setMotivo_viaje(d.getText15().getText());
         r.setPais_procedencia(d.getText17().getText());
         r.setPais_residencia(d.getText18().getText());

@@ -5,9 +5,8 @@
  */
 package espol.edu.ec.tda.entidades;
 
-import java.util.LinkedList;
-
 import espol.edu.ec.moduloDeRegistro.RegistroMigrante;
+import java.util.LinkedList;
 
 /**
  *
@@ -134,6 +133,37 @@ public class Persona {
 
     public void setSubcontnacionalidad(String subcont_nacionalidad) {
         this.subcontNacionalidad = subcont_nacionalidad;
+    }
+    
+    public String texto(){
+        StringBuilder sb = new StringBuilder();
+        String ced = String.valueOf(cedula);
+        if(ced.length()==9){
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append("0");
+            sb2.append(ced);
+            ced = sb2.toString();
+        }
+        sb.append(ced);
+        sb.append(",");
+        sb.append(nombre);
+        sb.append(",");
+        sb.append(apellido);
+        sb.append(",");
+        sb.append(sexo);
+        sb.append(",");
+        sb.append(anioNacimiento);
+        sb.append(",");
+        sb.append(ocupacion);
+        sb.append(",");
+        sb.append(edad);
+        sb.append(",");
+        sb.append(Nacionalidad);
+        sb.append(",");
+        sb.append(continenteNacimiento);
+        sb.append(",");
+        sb.append(subcontNacionalidad);
+        return sb.toString();
     }
 
     @Override

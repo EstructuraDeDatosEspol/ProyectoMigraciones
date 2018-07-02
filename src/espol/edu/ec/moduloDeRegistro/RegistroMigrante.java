@@ -29,6 +29,9 @@ public class RegistroMigrante {
     private Persona persona;
     private Canton canton;
     private String provincia_movi;
+
+    public RegistroMigrante() {
+    }
     
 
     public RegistroMigrante(String tip_mov, String tipo_nacionalidad, String via_transporte, int anio_movi, String mes_movi, int dia_movi, String motivo_viaje, String pais_procedencia, String pais_residencia, String lugar_proveniente, String cont_procedencia, String cont_residencia, String subcont_procedencia, Persona persona, Canton canton, String provincia_movi) {
@@ -215,7 +218,14 @@ public class RegistroMigrante {
         bld.append(";");
         bld.append(dia_movi);
         bld.append(";");
-        bld.append(persona.getCedula());
+        String cedula = String.valueOf(persona.getCedula());
+        if(cedula.length()==9){
+            StringBuilder sb = new StringBuilder();
+            sb.append("0");
+            sb.append(cedula);
+            cedula = sb.toString();
+        }
+        bld.append(cedula);
         bld.append(";");
         bld.append(persona.getNombre());
         bld.append(";");
