@@ -43,6 +43,8 @@ public class ProcesadorDeRegistro {
     Stack<Map.Entry<String,Integer>> totalEntradas;
     Stack<Map.Entry<String,Integer>> totalSalidas;
 
+    Stack<Map.Entry<String,Integer>> principalesEntradas;
+    Stack<Map.Entry<String,Integer>> principalesSalidas;
 
     /**
      * constructor Principal, instancia las pilas.
@@ -54,6 +56,9 @@ public class ProcesadorDeRegistro {
         this.provinciaCodigo      = new HashMap<>();
         this.totalEntradas   = new DoubleLinkedList<>();
         this.totalSalidas    = new DoubleLinkedList<>();
+        
+        this.principalesEntradas =new DoubleLinkedList<>();
+        this.principalesSalidas = new DoubleLinkedList<>();
 
         for(int i=0; i<4; i++){
             entradasPorRegion.add(new DoubleLinkedList<>());
@@ -63,7 +68,6 @@ public class ProcesadorDeRegistro {
         procesarPorTipoMigracion();   
         procesarTotal_EntradasSalidas();
     }
-
 
     /**
      * agrega los datos a la pila del respectivo tipo de migracion (entrada/salida)
@@ -80,36 +84,49 @@ public class ProcesadorDeRegistro {
         agregarAPila(salidasPorProvincia, salidasPorRegion);
 
     }
+    
 
     /**
      * genera las pilas de todas las provincias por entrada y salida, y las ordena .
      */
     public void procesarTotal_EntradasSalidas(){
 
-        Stack<Map.Entry<String,Integer>> copia=new DoubleLinkedList<>();
+        Stack<Map.Entry<String,Integer>> copia1=new DoubleLinkedList<>();
 
         int i=0;
         for(Stack<Map.Entry<String,Integer>> pila: entradasPorRegion){
+            
             while (!pila.isEmpty()){
-                this.totalEntradas.push(pila.peek());
-                copia.push(pila.pop());
+                Map.Entry<String,Integer> entry=pila.pop();
+                this.totalEntradas.push(entry);
+                copia1.push(entry);
             }
-            entradasPorRegion.set(i++,copia);
-            copia=new DoubleLinkedList<>();
+            entradasPorRegion.set(i++,copia1);
+            copia1=new DoubleLinkedList<>();
         }
-
+        
+        Stack<Map.Entry<String,Integer>> copia2=new DoubleLinkedList<>();
         i=0;
         for (Stack<Map.Entry<String,Integer>> pila: salidasPorRegion){
             while (!pila.isEmpty()){
-                this.totalSalidas.push(pila.peek());
-                copia.push(pila.pop());
+                Map.Entry<String,Integer> entry = pila.pop();
+                this.totalSalidas.push(entry);
+                copia2.push(entry);
             }
-            salidasPorRegion.set(i++,copia);
-            copia=new DoubleLinkedList<>();
+            salidasPorRegion.set(i++,copia2);
+            copia2=new DoubleLinkedList<>();
         }
 
+        System.out.println(totalEntradas);
+        System.out.println(totalSalidas);
+        
         this.totalEntradas=ordenarPila(totalEntradas);
-        this.totalSalidas=ordenarPila(totalSalidas);   
+        this.totalSalidas=ordenarPila(totalSalidas);
+        
+        System.out.println(totalEntradas);
+        System.out.println(totalSalidas);
+        
+        
 
         i=0;
         for(Stack<Map.Entry<String,Integer>> pila : entradasPorRegion){
@@ -182,9 +199,12 @@ public class ProcesadorDeRegistro {
 
         BufferedReader br = null;
         String line = "";
+        String encode="iso-8859-1";
+        
+        if(path.equals(NUEVOS_REGISTROS_PATH)) encode="UTF8";
 
         try {
-            br = new BufferedReader(new InputStreamReader(new FileInputStream(path),"iso-8859-1"));
+            br = new BufferedReader(new InputStreamReader(new FileInputStream(path),encode));
             br.readLine();
 
             while ((line = br.readLine()) != null) {
@@ -223,8 +243,9 @@ public class ProcesadorDeRegistro {
         {
             Map.Entry<String,Integer> tmpEntry = pila.pop();
 
-            while(!ordenada.isEmpty() && ordenada.peek().getValue() > tmpEntry.getValue())  pila.push(ordenada.pop());
-
+            while(!ordenada.isEmpty() && (ordenada.peek().getValue() > tmpEntry.getValue())) {
+                pila.push(ordenada.pop());
+            }
             ordenada.push(tmpEntry);
         }
         return ordenada;
@@ -262,5 +283,4 @@ public class ProcesadorDeRegistro {
     public Stack<Map.Entry<String,Integer>> getTotalSalidas(){
         return this.totalSalidas;
     }
-
 }

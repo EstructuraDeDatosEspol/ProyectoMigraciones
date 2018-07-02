@@ -1,9 +1,7 @@
 package espol.edu.ec.moduloProcesamiento;
 
-import java.util.ArrayList;
 import java.util.Map;
 import espol.edu.ec.tda.Stack;
-import java.util.ListIterator;
 import espol.edu.ec.tda.DoubleLinkedList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,11 +19,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class ModuloProcesamiento {
 
     Parent root;
-    ProcesadorDeRegistro datos;
+    static ProcesadorDeRegistro datos;
 
-    @FXML TableView tablaTotales;
-    @FXML TableColumn colProvincia;
+    @FXML TableView tablaTotalesEntradas;
+    @FXML TableColumn colProvinciaEntrada;
     @FXML TableColumn colEntradas;
+    
+    @FXML TableView tablaTotalesSalidas;
+    @FXML TableColumn colProvinciaSalida;
     @FXML TableColumn colSalidas;
 
     @FXML TableView tablaPorRegion;
@@ -34,20 +35,31 @@ public class ModuloProcesamiento {
 
     @FXML ComboBox selectorTipo;
     @FXML ComboBox selectorRegion;
+   
 
     @FXML public void initialize(){
-        colProvincia.setCellValueFactory(new PropertyValueFactory<EntryTotales,String>("nombreProvincia"));
-        colEntradas.setCellValueFactory(new PropertyValueFactory<EntryTotales,Integer>("registros"));
-        colSalidas.setCellValueFactory(new PropertyValueFactory<EntryTotales,Integer>("registroSalidas"));
+        
+        colProvinciaEntrada.setCellValueFactory(new PropertyValueFactory<Entry,String>("nombreProvincia"));
+        colEntradas.setCellValueFactory(new PropertyValueFactory<Entry,Integer>("registros"));
+        
+        colProvinciaSalida.setCellValueFactory(new PropertyValueFactory<Entry,String>("nombreProvincia"));
+        colSalidas.setCellValueFactory(new PropertyValueFactory<Entry,Integer>("registros"));
+        
         colProvinciaRegion.setCellValueFactory(new PropertyValueFactory<Entry,String>("nombreProvincia"));
         colCantidadDeRegistros.setCellValueFactory(new PropertyValueFactory<Entry,Integer>("registros"));
+        
         datos = new ProcesadorDeRegistro();
         cargarTablaTotales();
     }
 
     Stack<Map.Entry<String,Integer>> totalEntradas;
     Stack<Map.Entry<String,Integer>> totalSalidas;
+    
 
+    public static void actualizarTodasLasTablas(){
+        datos.procesarPorTipoMigracion();
+        datos.procesarTotal_EntradasSalidas();
+    }
 
     @FXML
     void actualizarTablaPorRegion(){
@@ -60,57 +72,50 @@ public class ModuloProcesamiento {
         } catch (Exception e) {
             return;
         }
-        
-
+       
         if(tipo.equals("Entradas")){
             switch (region){
-                case "Costa":agregarDatosATabla(datos.getEntradasCosta());break;
-                case "Sierra":agregarDatosATabla(datos.getEntradaSierra());break;
-                case "Oriente":agregarDatosATabla(datos.getEntradaOriente());break;
-                case "Insular":agregarDatosATabla(datos.getEntradaInsular());break;
+                case "Costa":agregarDatosATabla(datos.getEntradasCosta(), tablaPorRegion);break;
+                case "Sierra":agregarDatosATabla(datos.getEntradaSierra(), tablaPorRegion);break;
+                case "Oriente":agregarDatosATabla(datos.getEntradaOriente(), tablaPorRegion);break;
+                case "Insular":agregarDatosATabla(datos.getEntradaInsular(), tablaPorRegion);break;
                 default:break;
             }
         }
         else {
             switch (region){
-                case "Costa":agregarDatosATabla(datos.getSalidaCosta());break;
-                case "Sierra":agregarDatosATabla(datos.getSalidaSierra());break;
-                case "Oriente":agregarDatosATabla(datos.getSalidaOriente());break;
-                case "Insular":agregarDatosATabla(datos.getSalidaInsular());break;
+                case "Costa":agregarDatosATabla(datos.getSalidaCosta(), tablaPorRegion);break;
+                case "Sierra":agregarDatosATabla(datos.getSalidaSierra(), tablaPorRegion);break;
+                case "Oriente":agregarDatosATabla(datos.getSalidaOriente(), tablaPorRegion);break;
+                case "Insular":agregarDatosATabla(datos.getSalidaInsular(), tablaPorRegion);break;
                 default:break;
             }
         }
     }
 
-     void agregarDatosATabla(Stack<Map.Entry<String,Integer>> pila){
-        
-        DoubleLinkedList<Map.Entry<String,Integer>> p = (DoubleLinkedList<Map.Entry<String,Integer>>) pila;
-
-        if(!this.tablaPorRegion.getItems().isEmpty()) this.tablaPorRegion.getItems().clear();
-       
-        ObservableList<Entry> list = FXCollections.observableArrayList();
-        
-        ListIterator<Map.Entry<String,Integer>> itr = p.iterator(p.size());
-        while (itr.hasPrevious()){
-            Map.Entry<String,Integer> entry = itr.previous();
-            list.add(new Entry(entry.getKey(),entry.getValue()));
-        }
-        this.tablaPorRegion.setItems(list);
-    }
-
     public void cargarTablaTotales(){
-
-        ObservableList<Entry> list = FXCollections.observableArrayList();
 
         totalEntradas=datos.getTotalEntradas();
         totalSalidas=datos.getTotalSalidas();
+        
+        agregarDatosATabla(totalEntradas,tablaTotalesEntradas);
+        agregarDatosATabla(totalSalidas,tablaTotalesSalidas);
+    }
+    
+    
+     void agregarDatosATabla(Stack<Map.Entry<String,Integer>> pila, TableView tabla){
+        
+        DoubleLinkedList<Map.Entry<String,Integer>> p = (DoubleLinkedList<Map.Entry<String,Integer>>) pila;
 
-        while (!totalEntradas.isEmpty()){
-            Map.Entry<String,Integer> entradas=totalEntradas.pop();
-            Map.Entry<String,Integer> salidas=totalSalidas.pop();
-            list.add(new EntryTotales(entradas.getKey(),entradas.getValue(),salidas.getValue()));
+        if(!tabla.getItems().isEmpty()) tabla.getItems().clear();
+       
+        ObservableList<Entry> list = FXCollections.observableArrayList();
+        
+        while (!pila.isEmpty()){
+            Map.Entry<String,Integer> entry = pila.pop();
+            list.add(new Entry(entry.getKey(),entry.getValue()));
         }
-        this.tablaTotales.setItems(list);
+        tabla.setItems(list);
     }
 
     public class Entry{
@@ -129,19 +134,6 @@ public class ModuloProcesamiento {
 
         public Integer getRegistros() {
             return registros;
-        }
-    }
-
-    public class EntryTotales extends Entry{
-        Integer registroSalidas;
-
-        public EntryTotales(String nombreProvincia, Integer registros, Integer registroSalidas) {
-            super(nombreProvincia, registros);
-            this.registroSalidas=registroSalidas;
-        }
-
-        public Integer getRegistroSalidas() {
-            return registroSalidas;
         }
     }
 }
