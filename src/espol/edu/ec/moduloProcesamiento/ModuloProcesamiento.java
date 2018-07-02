@@ -3,6 +3,8 @@ package espol.edu.ec.moduloProcesamiento;
 import java.util.ArrayList;
 import java.util.Map;
 import espol.edu.ec.tda.Stack;
+import java.util.ListIterator;
+import espol.edu.ec.tda.DoubleLinkedList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -57,7 +59,6 @@ public class ModuloProcesamiento {
     @FXML
     void actualizarTablaPorRegion(){
         
-        datos= new ProcesadorDeRegistro();
         String tipo = selectorTipo.getValue().toString();
         String region= selectorRegion.getValue().toString();
 
@@ -82,15 +83,17 @@ public class ModuloProcesamiento {
     }
 
 
-    void agregarDatosATabla(Stack<Map.Entry<String,Integer>> pila){
+     void agregarDatosATabla(Stack<Map.Entry<String,Integer>> pila){
+        
+        DoubleLinkedList<Map.Entry<String,Integer>> p = (DoubleLinkedList<Map.Entry<String,Integer>>) pila;
 
         if(!this.tablaPorRegion.getItems().isEmpty()) this.tablaPorRegion.getItems().clear();
        
-
         ObservableList<Entry> list = FXCollections.observableArrayList();
-
-        while (!pila.isEmpty()){
-            Map.Entry<String,Integer> entry = pila.pop();
+        
+        ListIterator<Map.Entry<String,Integer>> itr = p.iterator(p.size());
+        while (itr.hasPrevious()){
+            Map.Entry<String,Integer> entry = itr.previous();
             list.add(new Entry(entry.getKey(),entry.getValue()));
         }
         this.tablaPorRegion.setItems(list);
