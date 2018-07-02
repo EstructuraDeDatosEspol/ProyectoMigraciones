@@ -45,7 +45,7 @@ public class ProcesadorDeRegistro {
 
 
     /**
-     * constructor Principal, instancia las pilas
+     * constructor Principal, instancia las pilas.
      */
     public ProcesadorDeRegistro() {
 
@@ -60,7 +60,7 @@ public class ProcesadorDeRegistro {
             salidasPorRegion.add(new DoubleLinkedList<>());
         }
 
-        procesarPorTipoMigracion();
+        procesarPorTipoMigracion();   
         procesarTotal_EntradasSalidas();
     }
 
@@ -109,7 +109,7 @@ public class ProcesadorDeRegistro {
         }
 
         this.totalEntradas=ordenarPila(totalEntradas);
-        this.totalSalidas=ordenarPila(totalSalidas);
+        this.totalSalidas=ordenarPila(totalSalidas);   
 
         i=0;
         for(Stack<Map.Entry<String,Integer>> pila : entradasPorRegion){
@@ -124,7 +124,7 @@ public class ProcesadorDeRegistro {
 
     /**
      * comprueba a que region pertenece cada provincia y la agrega en la respectiva pila.
-     * @param datos Map con los datos de registros
+     * @param datos Map con los datos de registros.
      * @param pilas arrayList de las pilas.
      */
     private void agregarAPila(Map<String, Integer> datos, ArrayList<Stack<Map.Entry<String, Integer>>> pilas){

@@ -45,9 +45,6 @@ public class ModuloProcesamiento {
         cargarTablaTotales();
     }
 
-    ArrayList<Stack<Map.Entry<String,Integer>>> entradasPorRegion;
-    ArrayList<Stack<Map.Entry<String,Integer>>> salidasPorRegion;
-
     Stack<Map.Entry<String,Integer>> totalEntradas;
     Stack<Map.Entry<String,Integer>> totalSalidas;
 
@@ -55,8 +52,15 @@ public class ModuloProcesamiento {
     @FXML
     void actualizarTablaPorRegion(){
         
-        String tipo = selectorTipo.getValue().toString();
-        String region= selectorRegion.getValue().toString();
+        String region="";
+        String tipo="";
+        try {
+            tipo = selectorTipo.getValue().toString();
+            region= selectorRegion.getValue().toString();
+        } catch (Exception e) {
+            return;
+        }
+        
 
         if(tipo.equals("Entradas")){
             switch (region){
@@ -101,15 +105,12 @@ public class ModuloProcesamiento {
         totalEntradas=datos.getTotalEntradas();
         totalSalidas=datos.getTotalSalidas();
 
-        System.out.println(totalEntradas.size()+totalSalidas.size());
-
         while (!totalEntradas.isEmpty()){
             Map.Entry<String,Integer> entradas=totalEntradas.pop();
             Map.Entry<String,Integer> salidas=totalSalidas.pop();
             list.add(new EntryTotales(entradas.getKey(),entradas.getValue(),salidas.getValue()));
         }
         this.tablaTotales.setItems(list);
-
     }
 
     public class Entry{
