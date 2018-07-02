@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchor" prefHeight="393.0" prefWidth="535.0" stylesheets="@../recursos/assets/TableViewStyle.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.moduloProcesamiento.ModuloProcesamiento">
+<AnchorPane fx:id="anchor" prefHeight="393.0" prefWidth="535.0" stylesheets="@../recursos/assets/TableViewStyle.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.moduloProcesamiento.ModuloProcesamiento">
    <children>
       <SplitPane dividerPositions="0.528046421663443" layoutX="8.0" layoutY="7.0" prefHeight="379.0" prefWidth="519.0">
         <items>
@@ -28,7 +28,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="377.0" prefWidth="220.0">
                <children>
                   <Label fx:id="tituloTabla2" layoutX="54.0" layoutY="14.0" text="Registros Por Región" textAlignment="CENTER" />
-                  <ComboBox fx:id="selectorTipo" layoutX="14.0" layoutY="39.0" onAction="#activarSelectorRegion" prefHeight="25.0" prefWidth="89.0" promptText="Tipo">
+                  <ComboBox fx:id="selectorTipo" layoutX="14.0" layoutY="39.0" onAction="#actualizarTablaPorRegion" prefHeight="25.0" prefWidth="89.0" promptText="Tipo">
                       <items>
                           <FXCollections fx:factory="observableArrayList">
                               <String fx:value="Entradas" />
@@ -36,7 +36,7 @@
                           </FXCollections>
                       </items>
                   </ComboBox>
-                  <ComboBox fx:id="selectorRegion" disable="true" layoutX="122.0" layoutY="39.0" onAction="#actualizarTablaPorRegion" prefHeight="25.0" prefWidth="96.0" promptText="Región">
+                  <ComboBox fx:id="selectorRegion" layoutX="122.0" layoutY="39.0" onAction="#actualizarTablaPorRegion" prefHeight="25.0" prefWidth="96.0" promptText="Región">
                       <items>
                           <FXCollections fx:factory="observableArrayList">
                               <String fx:value="Costa" />

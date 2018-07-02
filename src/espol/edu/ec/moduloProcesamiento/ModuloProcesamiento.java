@@ -51,10 +51,6 @@ public class ModuloProcesamiento {
     Stack<Map.Entry<String,Integer>> totalEntradas;
     Stack<Map.Entry<String,Integer>> totalSalidas;
 
-    @FXML
-    void activarSelectorRegion(){
-        selectorRegion.setDisable(false);
-    }
 
     @FXML
     void actualizarTablaPorRegion(){
@@ -81,7 +77,6 @@ public class ModuloProcesamiento {
             }
         }
     }
-
 
      void agregarDatosATabla(Stack<Map.Entry<String,Integer>> pila){
         
