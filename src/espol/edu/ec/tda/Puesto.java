@@ -57,7 +57,7 @@ public class Puesto {
     
     @Override
     public boolean equals(Object o){
-        if(!(o instanceof Puesto))
+        if(o == null || !(o instanceof Puesto))
             return false;
         return o.hashCode() == this.hashCode();
     }

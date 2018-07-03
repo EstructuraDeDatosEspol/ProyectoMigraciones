@@ -31,6 +31,10 @@ public class TurnoPane extends HBox {
         content();
     }
     
+    public TurnoPane(Turno turno) {
+        this(turno, 200, 75);
+    }
+    
     private void content() {
         Text t = new Text(turno.getNumero());
         Text p = new Text(turno.getPuesto().getPuesto());
@@ -71,5 +75,10 @@ public class TurnoPane extends HBox {
         this.widht = widht;
     }
     
-    
+    @Override
+    public boolean equals(Object o) {
+        if(o == null || !(o instanceof TurnoPane))
+            return false;
+        return turno.equals(((TurnoPane)o).turno);
+    }
 }

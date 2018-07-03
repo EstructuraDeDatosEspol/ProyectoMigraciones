@@ -59,4 +59,15 @@ public class Turno {
     public String toString() {
         return "Numero:"+ numero + "-Puesto:"+ puesto.getPuesto();
     }
+     
+    @Override
+    public boolean equals(Object o) {
+        if(o == null || !(o instanceof Turno))
+            return false;
+        Turno t = (Turno)o;
+        return numero.equals(t.numero) && 
+                puesto.equals(t.puesto) && 
+                tipoAtencion == t.tipoAtencion &&
+                estado == t.estado;
+    }
 }

@@ -49,18 +49,19 @@ public class PaneModulo1 {
     
     public final static Map<String, Persona> EMPLEADOS = ReadWriter.loadEmpleados();
     public final static List<Puesto> PUESTOS = Puesto.cargarPuestos(EMPLEADOS);
-    private final static Map<Puesto, LinkedList<Turno>> ATENCION = loadMap(PUESTOS);
+    public final static Map<Puesto, LinkedList<Turno>> ATENCION = loadMap(PUESTOS);
     private final BorderPane root;
     private final static PaneScreenTurnos SCREEN = Main.getRootTurnShower();
-    private final static PaneTurnoGenerador SECCION_TURNO = new PaneTurnoGenerador(ATENCION, SCREEN);
-    private final static PaneAtenderTurno SECCION_ATENDER = new PaneAtenderTurno(ATENCION, SCREEN, SECCION_TURNO);
+    public final static PaneTurnoGenerador SECCION_TURNO = new PaneTurnoGenerador(ATENCION, SCREEN);
+    private final static PaneAtenderTurno SECCION_ATENDER = new PaneAtenderTurno(ATENCION, SCREEN);
     private final static PaneAdminPuestos SECCION_PUESTOS = new PaneAdminPuestos(ATENCION);
     private final static PaneAdminEmpleados SECCION_EMPLEADOS = new PaneAdminEmpleados(ATENCION); 
-    
+    private TabPane pane;
     public PaneModulo1() {
         root = new BorderPane();
         root.setCenter(SECCION_TURNO.getPane()); 
         root.setMinSize(Const.MAX_WIDTH/3, Const.MAX_HEIGHT/2.4);
+        pane = new TabPane();
         leftPane();
     }
     
@@ -90,7 +91,6 @@ public class PaneModulo1 {
         });
         
         puesto.setOnMouseClicked(e -> {
-            TabPane pane = new TabPane();
             pane.getTabs().addAll(SECCION_PUESTOS.getTab(), SECCION_EMPLEADOS.getTab());
             root.setCenter(pane); 
         }); 

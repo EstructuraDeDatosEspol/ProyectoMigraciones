@@ -31,17 +31,14 @@ public class PaneAtenderTurno {
     private final Map<Puesto, LinkedList<Turno>> atencion;
     private final Button atender;
     private final PaneScreenTurnos screen;
-    private final PaneTurnoGenerador generador;
     
-    public PaneAtenderTurno(Map<Puesto, LinkedList<Turno>> atencion, PaneScreenTurnos screen,
-            PaneTurnoGenerador generador) {
+    public PaneAtenderTurno(Map<Puesto, LinkedList<Turno>> atencion, PaneScreenTurnos screen) {
         pane = new VBox();
         puestos = new ComboBox<>();
         turnos = new ComboBox<>();
         this.atencion = atencion;
         this.screen = screen;
         atender = new Button("Atender");
-        this.generador = generador;
         content();
     }
 
@@ -96,7 +93,7 @@ public class PaneAtenderTurno {
             if(turnos.getItems().isEmpty())
                 turnos.setDisable(true);
             atencion.get(t.getPuesto()).remove(t);
-            screen.addTurno(generador.getNext());
+            screen.atender(t); 
         }); 
     }
     

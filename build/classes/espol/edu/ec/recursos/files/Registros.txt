@@ -4,3 +4,8 @@ Entrada;Ecuador;aereo;Azuay;Cuenca;2018;abril;10;0912345678;Karla;Mendoza;mujer;
 Entrada;Ecuador;mar;Esmeraldas;Atacames;2017;diciembre;03;0987654321;Ney;Canales;otro;1998;estudiante;clases;Ecuatoriano;Ecuador;Ecuador;casa;19;America;America;America;Sudamerica;Sudamerica
 Entrada;Ecuador;carro;Chimborazo;Chambo;2015;junio;25;0987654321;Ney;Canales;otro;1998;estudiante;clases;Ecuatoriano;Ecuador;Ecuador;casa;19;America;America;America;Sudamerica;Sudamerica
 Entrada;Ecuador;carro;Guayas;Guayaquil;2016;octubre;23;0987654321;Ney;Canales;otro;1998;estudiante;clases;Ecuatoriano;Ecuador;Ecuador;casa;19;America;America;America;Sudamerica;Sudamerica
+Salida;Ecuador;terrestre;El Oro;Arenillas;2000;julio;2;0955533342;Valerya;Garcia;Mujer;1997;Estudiante;Paseo;Ecuador;Ecuador;Ecuador;ciudadela;21;América;América;América;SudAmérica;Sudamerica
+Salida;Ecuador;terrestre;Los Ríos;Babahoyo;2000;julio;2;0955533342;Valerya;Garcia;Mujer;1997;Estudiante;Paseo;Ecuador;Ecuador;Ecuador;ciudadela;21;América;América;América;SudAmérica;Sudamerica
+Entrada;Ecuador;terrestre;Los Ríos;Babahoyo;2000;julio;2;0955533342;Valerya;Garcia;Mujer;1997;Estudiante;Paseo;Ecuador;Ecuador;Ecuador;ciudadela;21;América;América;América;SudAmérica;Sudamerica
+Salida;Ecuador;terrestre;Los Ríos;Babahoyo;2000;julio;2;0955533342;Valerya;Garcia;Mujer;1997;Estudiante;Paseo;Ecuador;Ecuador;Ecuador;ciudadela;21;América;América;América;SudAmérica;Sudamerica
+Entrada;Ecuador;Terretre;Imbabura;Ibarra;2018;julio;2;1234123445;Miguel;MIguelConApellido;Femenino;1234;Jodedor;Juguetear;Ecuador;Ecuador;Ecuador;Ecuador;22;América;América;América;SudAmérica;SudAmérica

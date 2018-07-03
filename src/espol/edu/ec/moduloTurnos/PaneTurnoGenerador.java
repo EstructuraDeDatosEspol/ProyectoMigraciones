@@ -97,8 +97,12 @@ public class PaneTurnoGenerador {
         this.atencion.get(puesto).add(turno);
         turnos.offer(turno);
         if(!screen.isFull())
-            screen.addTurno(this.getNext());
+            screen.addTurno(this.getNext(), true);
         return turno;
+    }
+    
+    public Turno viewNext() {
+        return turnos.peek();
     }
     
     public Turno getNext() {

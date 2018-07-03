@@ -7,7 +7,7 @@ package espol.edu.ec.moduloTurnos;
 
 import espol.edu.ec.tda.SimplyLinkedListCircular;
 import espol.edu.ec.tda.Const;
-import espol.edu.ec.tda.Estado;
+import espol.edu.ec.tda.Puesto;
 import espol.edu.ec.tda.Turno;
 import espol.edu.ec.tda.Video;
 import java.io.BufferedReader;
@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -52,6 +53,7 @@ public class PaneScreenTurnos {
     private int index;
     
     public PaneScreenTurnos() {
+        
         videos = new SimplyLinkedListCircular<>();
         backPane = new StackPane();
         pane = new VBox();
@@ -190,30 +192,48 @@ public class PaneScreenTurnos {
     }
     
     public boolean isFull() {
-        return index == 4;
+        return index == 4 || index == PaneModulo1.ATENCION.size() + 1;
+    }
+     
+    public void atender(Turno turno) {
+        panel.getChildren().remove(new TurnoPane(turno));
+        index--;
+        addTurno(PaneModulo1.SECCION_TURNO.getNext(), false);
+//        int puestos = PaneModulo1.ATENCION.size();
+//        boolean puestoEnPantalla = false;
+//        if(puestos >= 2 && puestos < 5){
+//            for(Node n: panel.getChildren()) 
+//                if(n instanceof TurnoPane){ 
+//                    Puesto puesto = ((TurnoPane)n).getTurno().getPuesto();
+//                    Turno t = PaneModulo1.SECCION_TURNO.viewNext();
+//                    if(t != null && puesto.equals(t.getPuesto()))
+//                        puestoEnPantalla = true;
+//                }
+//        }
+//        if(!puestoEnPantalla)
+//            addTurno(PaneModulo1.SECCION_TURNO.getNext(), false);
+//        else
+//            addTurno(null, false);
     }
     
-    public boolean addTurno(Turno turno) {
+    public boolean addTurno(Turno turno, boolean inicio) {
         double width = (Const.MAX_WIDTH/2 - Const.MAX_WIDTH/31)/2;
         double height = (Const.MAX_HEIGHT/1.5)/4;
         if(turno == null) {
-            panel.getChildren().removeIf((n)-> (n instanceof TurnoPane && 
-                ((TurnoPane)n).getTurno().getEstado() == Estado.ATENDIDO));
             Rectangle r3 = new Rectangle(width, height);
             r3.setFill(Color.color(0.408, 0.718, 0.898));
             Rectangle r4 = new Rectangle(width, height);
             r4.setFill(Color.color(0.392, 0.529, 0.667));
             panel.getChildren().add(new HBox(new StackPane(r3), new StackPane(r4)));
-            index--;
             return false;
         }
         TurnoPane tPane = new TurnoPane(turno, width, height);
         if(isFull()){
-            panel.getChildren().removeIf((n)-> (n instanceof TurnoPane && 
-                    ((TurnoPane)n).getTurno().getEstado() == Estado.ATENDIDO));
+            index++;
             return panel.getChildren().add(tPane);
-        }    
-        panel.getChildren().remove(index);
+        }
+        if(inicio)
+            panel.getChildren().remove(index);
         panel.getChildren().add(index, tPane);
         if(index < 4)
             index++;
