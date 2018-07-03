@@ -98,6 +98,7 @@ public class PaneAdminPuestos extends PaneAdmin {
     }
     
     private void crear() {
+        clear();
         registrar.setText("Registrar");
         estado.setText(""); 
         puestoBox.setText("");

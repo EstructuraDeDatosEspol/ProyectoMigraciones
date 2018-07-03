@@ -1,7 +1,7 @@
 ﻿tipo_movi;tipo_nacionalidad;via_transporte;provincia_movi;canton_movi;anio_movi;mes_movi;dia_movi;cedula;nombre;apellido;sexo_migr;anio_nac;ocupacion_migr;motivo_viaje;nacionalidad_migr;pais_procedencia;pais_residencia;lugar_proveniente;edad;cont_procedencia;cont_residencia;cont_nacimiento;subcont_procedencia;subcont_nacionalidad
 Entrada;Ecuador;carro;Guayas;Guayaquil;2018;junio;25;0987654321;Ney;Canales;otro;1998;estudiante;clases;Ecuatoriano;Ecuador;Ecuador;casa;19;America;America;America;Sudamerica;Sudamerica
 Entrada;Ecuador;aereo;Azuay;Cuenca;2018;abril;10;0912345678;Karla;Mendoza;mujer;1995;ingeniera;trabajo;Español;Ecuador;Ecuador;domicilio;23;America;America;Europa;Sudamerica;..
-Entrada;Ecuador;mar;Esmeraldas;Atacames;2017;diciembre;03;0987654321;Ney;Canales;otro;1998;estudiante;clases;Ecuatoriano;Ecuador;Ecuador;casa;19;America;America;America;Sudamerica;Sudamerica
+Entrada;Ecuador;mar;Esmeraldas;Atacames;2017;diciembre;3;0987654321;Ney;Canales;otro;1998;estudiante;clases;Ecuatoriano;Ecuador;Ecuador;casa;19;America;America;America;Sudamerica;Sudamerica
 Entrada;Ecuador;carro;Chimborazo;Chambo;2015;junio;25;0987654321;Ney;Canales;otro;1998;estudiante;clases;Ecuatoriano;Ecuador;Ecuador;casa;19;America;America;America;Sudamerica;Sudamerica
 Entrada;Ecuador;carro;Guayas;Guayaquil;2016;octubre;23;0987654321;Ney;Canales;otro;1998;estudiante;clases;Ecuatoriano;Ecuador;Ecuador;casa;19;America;America;America;Sudamerica;Sudamerica
 Salida;Ecuador;terrestre;El Oro;Arenillas;2000;julio;2;0955533342;Valerya;Garcia;Mujer;1997;Estudiante;Paseo;Ecuador;Ecuador;Ecuador;ciudadela;21;América;América;América;SudAmérica;Sudamerica
@@ -9,3 +9,6 @@ Salida;Ecuador;terrestre;Los Ríos;Babahoyo;2000;julio;2;0955533342;Valerya;Garc
 Entrada;Ecuador;terrestre;Los Ríos;Babahoyo;2000;julio;2;0955533342;Valerya;Garcia;Mujer;1997;Estudiante;Paseo;Ecuador;Ecuador;Ecuador;ciudadela;21;América;América;América;SudAmérica;Sudamerica
 Salida;Ecuador;terrestre;Los Ríos;Babahoyo;2000;julio;2;0955533342;Valerya;Garcia;Mujer;1997;Estudiante;Paseo;Ecuador;Ecuador;Ecuador;ciudadela;21;América;América;América;SudAmérica;Sudamerica
 Entrada;Ecuador;Terretre;Imbabura;Ibarra;2018;julio;2;1234123445;Miguel;MIguelConApellido;Femenino;1234;Jodedor;Juguetear;Ecuador;Ecuador;Ecuador;Ecuador;22;América;América;América;SudAmérica;SudAmérica
+Entrada;Ecuador;terrestre;Galápagos;Santa;2018;julio;2;1234567890;Max;Moran;Hombre;1985;Ingeniero;Trabajo;Portugal;Ecuador;Colombia;casa;33;América;América;Europa;SudAmérica;..
+Salida;Ecuador;aereo;Guayas;Guayaquil;2018;junio;21;1234567890;Max;Moran;hombre;1985;Ingeniero;regreso;Portugal;Ecuador;Ecuador;vacaciones;33;América;América;Europa;SudAmérica;..
+Entrada;Ecuador;terrestre;El Oro;Balsas;2015;marzo;13;0987654321;Ney;Canales;otro;1998;estudiante;Trabajo;Ecuatoriano;Ecuador;Portugal;PorAhi;19;América;Europa;America;SudAmérica;Sudamerica
