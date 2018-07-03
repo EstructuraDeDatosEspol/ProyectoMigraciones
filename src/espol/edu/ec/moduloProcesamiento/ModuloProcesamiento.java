@@ -19,7 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class ModuloProcesamiento {
 
     Parent root;
-    static ProcesadorDeRegistro datos;
+    ProcesadorDeRegistro datos;
 
     @FXML TableView tablaTotalesEntradas;
     @FXML TableColumn colProvinciaEntrada;
@@ -56,11 +56,6 @@ public class ModuloProcesamiento {
     Stack<Map.Entry<String,Integer>> totalSalidas;
     
 
-    public static void actualizarTodasLasTablas(){
-        datos.procesarPorTipoMigracion();
-        datos.procesarTotal_EntradasSalidas();
-    }
-
     @FXML
     void actualizarTablaPorRegion(){
         
@@ -93,6 +88,7 @@ public class ModuloProcesamiento {
         }
     }
 
+    
     public void cargarTablaTotales(){
 
         totalEntradas=datos.getTotalEntradas();
@@ -101,9 +97,9 @@ public class ModuloProcesamiento {
         agregarDatosATabla(totalEntradas,tablaTotalesEntradas);
         agregarDatosATabla(totalSalidas,tablaTotalesSalidas);
     }
+  
     
-    
-     void agregarDatosATabla(Stack<Map.Entry<String,Integer>> pila, TableView tabla){
+    void agregarDatosATabla(Stack<Map.Entry<String,Integer>> pila, TableView tabla){
         
         DoubleLinkedList<Map.Entry<String,Integer>> p = (DoubleLinkedList<Map.Entry<String,Integer>>) pila;
 
@@ -118,6 +114,7 @@ public class ModuloProcesamiento {
         tabla.setItems(list);
     }
 
+    
     public class Entry{
 
         String nombreProvincia;

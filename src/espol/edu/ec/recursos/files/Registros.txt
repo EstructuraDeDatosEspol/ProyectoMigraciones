@@ -8,3 +8,4 @@ Salida;Ecuador;terrestre;El Oro;Arenillas;2000;julio;2;0955533342;Valerya;Garcia
 Salida;Ecuador;terrestre;Los Ríos;Babahoyo;2000;julio;2;0955533342;Valerya;Garcia;Mujer;1997;Estudiante;Paseo;Ecuador;Ecuador;Ecuador;ciudadela;21;América;América;América;SudAmérica;Sudamerica
 Entrada;Ecuador;terrestre;Los Ríos;Babahoyo;2000;julio;2;0955533342;Valerya;Garcia;Mujer;1997;Estudiante;Paseo;Ecuador;Ecuador;Ecuador;ciudadela;21;América;América;América;SudAmérica;Sudamerica
 Salida;Ecuador;terrestre;Los Ríos;Babahoyo;2000;julio;2;0955533342;Valerya;Garcia;Mujer;1997;Estudiante;Paseo;Ecuador;Ecuador;Ecuador;ciudadela;21;América;América;América;SudAmérica;Sudamerica
+Entrada;Ecuador;Terretre;Imbabura;Ibarra;2018;julio;2;1234123445;Miguel;MIguelConApellido;Femenino;1234;Jodedor;Juguetear;Ecuador;Ecuador;Ecuador;Ecuador;22;América;América;América;SudAmérica;SudAmérica

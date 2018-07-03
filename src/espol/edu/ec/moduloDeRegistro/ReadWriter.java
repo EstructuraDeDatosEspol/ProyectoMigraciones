@@ -1,5 +1,6 @@
 package espol.edu.ec.moduloDeRegistro;
 
+import espol.edu.ec.moduloProcesamiento.ModuloProcesamiento;
 import espol.edu.ec.tda.Puesto;
 import espol.edu.ec.tda.entidades.Canton;
 import espol.edu.ec.tda.entidades.Continente;
@@ -86,6 +87,7 @@ public class ReadWriter{
         } catch (IOException ex) {
             ex.getStackTrace();
         }
+        
     }
     
     public LinkedList<Persona> cargarPersonas(String nombre ){
